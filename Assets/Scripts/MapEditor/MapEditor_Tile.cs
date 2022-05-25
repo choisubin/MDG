@@ -9,6 +9,13 @@ namespace MapEditor
     {
         [SerializeField]
         private EMapTile _type;
+        public EMapTile Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
         [SerializeField]
         private float _itemSizeX = 128f;
         [SerializeField]

@@ -47,9 +47,15 @@ TagManager:
   - name: BGEffect
     uniqueID: 75305965
     locked: 0
-  - name: Grid
+  - name: MapGrid
     uniqueID: 508332067
     locked: 0
   - name: MonsterLine
     uniqueID: 3225155455
+    locked: 0
+  - name: New Layer
+    uniqueID: 1734027803
+    locked: 0
+  - name: UI
+    uniqueID: 130148207
     locked: 0

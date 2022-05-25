@@ -133,6 +133,8 @@ public class PoolManager : MonoBehaviour
         {
             case EPrefabsType.GameStateHandler:
                 return "Prefabs/Game/GameStateHandler/";
+            case EPrefabsType.InGameTileMap:
+                return "Prefabs/Game/InGame/TileMap/";
         }
         return "Prefabs/";
     }    
@@ -140,5 +142,6 @@ public class PoolManager : MonoBehaviour
 public enum EPrefabsType
 {
     GameStateHandler,
+    InGameTileMap,
 }
 

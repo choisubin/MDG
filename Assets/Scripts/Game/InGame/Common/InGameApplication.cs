@@ -21,7 +21,12 @@ public class InGameApplication : BaseApplication
 
     public override void Init()
     {
-        controller.Init();
+        controller.Init(0,0);
+    }
+
+    public void Init(int stageNum, int subStage )
+    {
+        //Init();
     }
 
     public override void Set()

@@ -8,15 +8,16 @@ public class GameManager : MonoBehaviour, System.IDisposable
     // Start is called before the first frame update
     [SerializeField]
     private Dictionary<EGameState, BaseApplication> _app = new Dictionary<EGameState, BaseApplication>();
+    void Awake()
+    {
+        Screen.SetResolution(1080, 1920, true);
+    }
     void Start()
     {
         InitStateApplication();
         InitHandlers();
-        Debug.LogError(DefinitionManager.Instance);
-        Debug.LogError(DefinitionManager.Instance.GetData<StageDetailMapDefinition>(1).height);
-        Debug.LogError(DefinitionManager.Instance.GetDatas<StageDetailMapDefinition>());
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.ChangeSceneState);
-        ChangeState(EGameState.LOBBY);
+        ChangeState(EGameState.INGAME);
         
     }
 

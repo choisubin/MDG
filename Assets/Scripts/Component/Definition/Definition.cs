@@ -28,9 +28,29 @@ public class StageDetailDefinition
 public class StageDetailMapDefinition
 {
     public int key;
-    public int width;
-    public int height;
-    public int[][] mapGrid;
+    public int MaxWidthCount;
+    public int MaxHeightCount;
+    public MapDefinition mapGrid = new MapDefinition();
+}
+
+
+[System.Serializable]
+public class MapDefinition
+{
+    public List<MapLineDefinition> mapLines = new List<MapLineDefinition>();
+}
+
+[System.Serializable]
+public class MapLineDefinition
+{
+    public List<MapItemDefinition> mapItems = new List<MapItemDefinition>();
+}
+
+[System.Serializable]
+public class MapItemDefinition
+{
+    public bool isActive;
+    public EMapTile type;
 }
 
 [Serializable]

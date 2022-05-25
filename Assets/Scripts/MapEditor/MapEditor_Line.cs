@@ -29,5 +29,17 @@ namespace MapEditor
                 _items[i].Init(i);
             }
         }
+
+        public bool isLineAlive()
+        {
+            for (int i = 0; i < _items.Count; i++)
+            {
+                if(_items[i].IsActive)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

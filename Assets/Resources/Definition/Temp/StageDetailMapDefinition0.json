@@ -1,0 +1,177 @@
+{
+  "key": 0,
+  "MaxWidthCount": 4,
+  "MaxHeightCount": 7,
+  "mapGrid": {
+    "mapLines": [
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      },
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      },
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      },
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      },
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      },
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      },
+      {
+        "mapItems": [
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": true,
+            "type": 0
+          },
+          {
+            "isActive": false,
+            "type": 0
+          }
+        ]
+      }
+    ]
+  }
+}
