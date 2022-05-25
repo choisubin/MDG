@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour, System.IDisposable
         InitHandlers();
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.ChangeSceneState);
         ChangeState(EGameState.INGAME);
-        
+
     }
 
     // Update is called once per frame

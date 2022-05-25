@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameView : InGameElement
+public class InGameView : BaseElement
 {
     [SerializeField]
-    private TileMap _tileMap;
-    public TileMap TileMap
+    private PuzzleMapComponent _puzzleMap;
+    public PuzzleMapComponent PuzzleMap
     {
         get
         {
-            return _tileMap;
-        }
-        set
-        {
-            _tileMap = value;
+            return _puzzleMap;
         }
     }
 }

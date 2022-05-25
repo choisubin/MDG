@@ -53,7 +53,7 @@ TagManager:
   - name: MonsterLine
     uniqueID: 3225155455
     locked: 0
-  - name: New Layer
+  - name: Unit
     uniqueID: 1734027803
     locked: 0
   - name: UI

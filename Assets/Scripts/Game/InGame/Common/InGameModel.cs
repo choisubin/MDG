@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameModel : InGameElement
+public class InGameModel : BaseElement
 {
     //현재 진행된 시간
     //ㄹㅇㄴㅁㄹㅇㄻㅇㄴㄹ
     [SerializeField]
-    private float _time =0;
+    private float _time = 0;
     public float time
     {
         get
@@ -20,7 +20,7 @@ public class InGameModel : InGameElement
         }
     }
 
-    private int _stageNum;
+    private int _stageNum = 0;
 
     public int StageNum
     {
@@ -34,7 +34,7 @@ public class InGameModel : InGameElement
         }
     }
 
-    private int _subStageNum;
+    private int _subStageNum = 0;
     public int SubStageNum
     {
         get
@@ -71,4 +71,5 @@ public class InGameModel : InGameElement
             return _mapDef;
         }
     }
+
 }

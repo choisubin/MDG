@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class UnitBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private EUnitType _unitType = EUnitType.TileMapUnit;
+
+    [SerializeField]
+    private int _curXIndex;
+    [SerializeField]
+    private int _curYIndex;
+    public void Init(MapUnitWrapper wrapper)
     {
-        
+        _unitType = wrapper.unitType;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Set()
     {
-        
+
+    }
+
+    public virtual void Move()
+    {
+        Debug.LogError("UnitBase");
+    }
+
+    public void SetPosition(Vector3 pos)
+    {
+        transform.position = pos;
     }
 }

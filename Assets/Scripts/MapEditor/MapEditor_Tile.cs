@@ -52,8 +52,3 @@ namespace MapEditor
     }
 }
 
-public enum EMapTile 
-{
-    STAGE1,
-    STAGE2,
-}

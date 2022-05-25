@@ -2,17 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameElement : BaseElement
-{
-    public InGameApplication app
-    {
-        get
-        {
-            return GameObject.FindObjectOfType<InGameApplication>();
-        }
-    }
-}
-
 public class InGameApplication : BaseApplication
 {
     public InGameModel model;
@@ -21,10 +10,10 @@ public class InGameApplication : BaseApplication
 
     public override void Init()
     {
-        controller.Init(0,0);
+        controller.Init(this, 0, 0);
     }
 
-    public void Init(int stageNum, int subStage )
+    public void Init(int stageNum, int subStage)
     {
         //Init();
     }
