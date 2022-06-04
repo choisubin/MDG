@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BaseElement : MonoBehaviour
 {
-    public BaseApplication app
-    {
-        get
-        {
-            return GameObject.FindObjectOfType<BaseApplication>();
-        }
-    }
+    //public BaseApplication app
+    //{
+    //    get
+    //    {
+    //        return GameObject.FindObjectOfType<BaseApplication>();
+    //    }
+    //}
+}
+
+public abstract class BaseController : MonoBehaviour
+{
+    public abstract void Init();
+    public abstract void AdvanceTime(float dt_sec);
+    public abstract void Set();
+    public abstract void Dispose();
 }
 
 public abstract class BaseApplication : MonoBehaviour, IGameBasicModule

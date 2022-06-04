@@ -6,11 +6,17 @@ public class InGameApplication : BaseApplication
 {
     public InGameModel model;
     public InGameView view;
-    public InGameController controller;
+    //public InGameController controller;
+    public BaseController[] controllers;
 
     public override void Init()
     {
-        controller.Init(this, 0, 0);
+        //controller.Init(this, 0, 0);
+
+        foreach(var c in controllers)
+        {
+            c.Init();
+        }
     }
 
     public void Init(int stageNum, int subStage)
@@ -21,18 +27,33 @@ public class InGameApplication : BaseApplication
     public override void Set()
     {
         //gameObject.SetActive(true);
-        controller.Set();
+        //controller.Set();
+
+        foreach (var c in controllers)
+        {
+            c.Set();
+        }
     }
 
     public override void AdvanceTime(float dt_sec)
     {
-        controller.AdvanceTime(dt_sec);
+        //controller.AdvanceTime(dt_sec);
+
+        foreach (var c in controllers)
+        {
+            c.AdvanceTime(dt_sec);
+        }
     }
 
     public override void Dispose()
     {
         //gameObject.SetActive(false);
-        controller.Dispose();
+        //controller.Dispose();
+
+        foreach (var c in controllers)
+        {
+            c.Dispose();
+        }
     }
 
 }

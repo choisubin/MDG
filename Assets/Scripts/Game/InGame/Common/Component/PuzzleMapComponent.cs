@@ -24,6 +24,7 @@ public class PuzzleMapComponent : MonoBehaviour
     TilePos m_TileDownPos;    //블럭 인덱스 (보드에 저장된 위치)
     Vector3 m_ClickPos;         //DOWN 위치(보드 기준 Local 좌표)
 
+    /*
     public void Init(StageDetailMapDefinition def)
     {
         if (def != null)
@@ -125,5 +126,5 @@ public class PuzzleMapComponent : MonoBehaviour
 
             m_bTouchDown = false;   //클릭 상태 플래그 OFF
         }
-    }
+    }*/
 }

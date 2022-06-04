@@ -49,7 +49,7 @@ public class ActionManager
         {
             m_bRunning = true;    //액션 실행 상태 ON
 
-            SoundManager.instance.PlayOneShot(Clip.Chomp);
+            //SoundManager.instance.PlayOneShot(Clip.Chomp);
 
             //1. swipe action 수행
             Returnable<bool> bSwipedBlock = new Returnable<bool>(false);
@@ -92,7 +92,7 @@ public class ActionManager
             {
                 matchResult.value = true;
 
-                SoundManager.instance.PlayOneShot(Clip.BlcokClear);
+                //SoundManager.instance.PlayOneShot(Clip.BlcokClear);
 
                 // 매칭 블럭 제거 후 빈블럭 드롭 후 새 블럭 생성
                 yield return StartCoroutine(m_Stage.PostprocessAfterEvaluate());
