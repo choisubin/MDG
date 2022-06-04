@@ -26,6 +26,7 @@ public class InGameController : BaseElement
     public void AdvanceTime(float dt_sec)
     {
         _app.model.time += dt_sec;
+        _app.view.PuzzleMap.AdvanceTime(dt_sec);
     }
 
     public void Dispose()
