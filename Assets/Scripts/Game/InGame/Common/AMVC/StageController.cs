@@ -16,6 +16,7 @@ public class StageController : BaseController
     [SerializeField] Transform m_Container;
     [SerializeField] GameObject m_CellPrefab;
     [SerializeField] GameObject m_BlockPrefab;
+    [SerializeField] Camera m_BoardCamera;
 
     public override void Init()
     {
@@ -44,7 +45,7 @@ public class StageController : BaseController
             return;
 
         m_bInit = true;
-        m_InputManager = new InputManager(m_Container);
+        m_InputManager = new InputManager(m_BoardCamera, m_Container);
 
         BuildStage();
 

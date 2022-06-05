@@ -14,9 +14,9 @@ public class BlockConfig : ScriptableObject
         switch (questType)
         {
             case BlockQuestType.CLEAR_SIMPLE:
-                return Instantiate(explosion) as GameObject;
+                return PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameMatchEffect, "FX_BLOCK_EXPLOSION_NORMAL");
             default:
-                return Instantiate(explosion) as GameObject;
+                return PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameMatchEffect, "FX_BLOCK_EXPLOSION_NORMAL"); ;
         }
     }
 

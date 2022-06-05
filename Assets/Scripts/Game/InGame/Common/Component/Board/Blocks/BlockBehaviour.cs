@@ -12,6 +12,12 @@ public class BlockBehaviour : MonoBehaviour
 
         UpdateView(false);
     }
+    public void Set()
+    {
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+
+        UpdateView(false);
+    }
 
     internal void SetBlock(Block block)
     {
@@ -50,21 +56,21 @@ public class BlockBehaviour : MonoBehaviour
     IEnumerator CoStartSimpleExplosion(bool bDestroy = true)
     {
         ////1. 크기가 줄어드는 액션 실행한다 : 폭파되면서 자연스럽게 소멸되는 모양 연출, 1 -> 0.3으로 줄어든다.
-        //yield return Util.Action2D.Scale(transform, Core.Constants.BLOCK_DESTROY_SCALE, 4f);
+        yield return Action2D.Scale(transform, Constants.BLOCK_DESTROY_SCALE, 4f);
 
-        ////2. 폭파시키는 효과 연출 : 블럭 자체의 Clear 효과를 연출한다 (모든 블럭 동일)
-        //GameObject explosionObj = m_BlockConfig.GetExplosionObject(BlockQuestType.CLEAR_SIMPLE);
-        //ParticleSystem.MainModule newModule = explosionObj.GetComponent<ParticleSystem>().main;
-        //newModule.startColor = m_BlockConfig.GetBlockColor(m_Block.breed);
+        //2. 폭파시키는 효과 연출 : 블럭 자체의 Clear 효과를 연출한다 (모든 블럭 동일)
+        GameObject explosionObj = m_BlockConfig.GetExplosionObject(BlockQuestType.CLEAR_SIMPLE);
+        ParticleSystem.MainModule newModule = explosionObj.GetComponent<ParticleSystem>().main;
+        newModule.startColor = m_BlockConfig.GetBlockColor(m_Block.breed);
 
-        //explosionObj.SetActive(true);
-        //explosionObj.transform.position = this.transform.position;
+        explosionObj.SetActive(true);
+        explosionObj.transform.position = this.transform.position;
 
         yield return new WaitForSeconds(0.1f);
 
         //3. 블럭 GameObject 객체 삭제 or make size zero
         if (bDestroy)
-            Destroy(gameObject);
+            PoolManager.Instance.DespawnObject(EPrefabsType.Unit, gameObject);//Destroy(gameObject);
         else
         {
             Debug.Assert(false, "Unknown Action : GameObject No Destory After Particle");

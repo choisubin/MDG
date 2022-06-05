@@ -27,7 +27,7 @@ public class TileMapLine : MonoBehaviour
 
         for(int i = 0; i < _maxWidthCount; i++)
         {
-            GameObject go = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameTileMap, "item_" + (int)_lineDef.mapItems[i].type, this.transform);
+            GameObject go = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBoard, "item_" + (int)_lineDef.mapItems[i].type, this.transform);
             _items.Add(go.GetComponent<TileMapItem>());
         }
 

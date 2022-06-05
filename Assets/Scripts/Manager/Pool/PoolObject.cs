@@ -39,8 +39,17 @@ public class PoolObject : MonoBehaviour
         this.transform.SetParent(parent);
     }
 
+    public void EnableObject()
+    {
+        _objLife = 3;
+        _isEnable = true;
+
+        this.gameObject.SetActive(true);
+    }
+
     public void DisableObject(Transform pool)
     {
+        transform.localScale = new Vector3(1f, 1f, 1f);
         _isEnable = false;
         this.gameObject.SetActive(false);
         this.transform.SetParent(pool);

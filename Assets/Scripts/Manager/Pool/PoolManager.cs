@@ -93,6 +93,25 @@ public class PoolManager : MonoBehaviour
         return (obj.gameObject);
     }
 
+    public GameObject GrabPrefabs(EPrefabsType type, string name)
+    {
+        if (!_dicPool[type].ContainsKey(name))
+        {
+            _dicPool[type].Add(name, new List<PoolObject>());
+        }
+
+        if (_dicPool[type][name].Count < 1)
+        {
+            _dicPool[type][name].Add(CreatePoolObject(type, name));
+        }
+
+        PoolObject obj = _dicPool[type][name][0];
+        _dicPool[type][name].Remove(obj);
+        obj.EnableObject();
+
+        return (obj.gameObject);
+    }
+
     public void DespawnObject(EPrefabsType type, GameObject obj)
     {
         if(obj.TryGetComponent<PoolObject>(out PoolObject poolObj))
@@ -133,8 +152,10 @@ public class PoolManager : MonoBehaviour
         {
             case EPrefabsType.GameStateHandler:
                 return "Prefabs/Game/GameStateHandler/";
-            case EPrefabsType.InGameTileMap:
-                return "Prefabs/Game/InGame/TileMap/";
+            case EPrefabsType.InGameBoard:
+                return "Prefabs/Game/InGame/Board/";
+            case EPrefabsType.InGameMatchEffect:
+                return "Prefabs/Game/InGame/MatchEffect/";
             case EPrefabsType.Unit:
                 return "Prefabs/Game/Unit/";
         }
@@ -144,7 +165,8 @@ public class PoolManager : MonoBehaviour
 public enum EPrefabsType
 {
     GameStateHandler,
-    InGameTileMap,
+    InGameBoard,
+    InGameMatchEffect,
     Unit,
 }
 

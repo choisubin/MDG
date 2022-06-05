@@ -47,7 +47,7 @@ public class TileMap : MonoBehaviour
         _maxWidthCount = def.MaxWidthCount;
         for(int i = 0; i < _maxHeightCount; i ++)
         {
-            GameObject go = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameTileMap, "itemLine", this.transform);
+            GameObject go = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBoard, "itemLine", this.transform);
             _lines.Add(go.GetComponent<TileMapLine>());
         }
 

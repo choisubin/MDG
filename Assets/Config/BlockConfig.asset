@@ -12,7 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc1ad2d5d5814bd0abb597366c3dab5, type: 3}
   m_Name: BlockConfig
   m_EditorClassIdentifier: 
-  dropSpeed: []
-  basicBlockSprites: []
-  blockColors: []
-  explosion: {fileID: 0}
+  dropSpeed:
+  - 0.2
+  - 0.3
+  - 0.35
+  - 0.4
+  - 0.425
+  - 0.45
+  - 0.475
+  - 0.5
+  - 0.525
+  basicBlockSprites:
+  - {fileID: 21300000, guid: 20bf8998cd284094a81598afb8d8a23a, type: 3}
+  - {fileID: 21300000, guid: c19edb3451ae797429bda9c23a383d51, type: 3}
+  - {fileID: 21300000, guid: 4ff8a1f0a80ab59468bfc92d9ecd36dd, type: 3}
+  - {fileID: 21300000, guid: c6f0af18fe6319a40ae024970beb3448, type: 3}
+  - {fileID: 21300000, guid: 25f95d652bf155b4c9cafed82a9324f2, type: 3}
+  - {fileID: 21300000, guid: 7bc0e09a5946af847af92111f532792a, type: 3}
+  - {fileID: 21300000, guid: ddc18f9376c9d9a4a9ee0a8fdcf73a0b, type: 3}
+  - {fileID: 21300000, guid: 1203f3bb35ce0c847816b8e6e047a95d, type: 3}
+  blockColors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  explosion: {fileID: 2861438460690957853, guid: 75410d45c592a4dddb004a44411868e1,
+    type: 3}

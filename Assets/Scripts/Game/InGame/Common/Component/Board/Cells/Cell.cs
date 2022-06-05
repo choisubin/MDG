@@ -45,13 +45,14 @@ public class Cell
     public Cell InstantiateCellObj(GameObject cellPrefab, Transform containerObj)
     {
         //1. Cell 오브젝트를 생성한다.
-        GameObject newObj = Object.Instantiate(cellPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //GameObject newObj = Object.Instantiate(cellPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBoard, "Cell", containerObj);
 
         //2. 컨테이너(Board)의 차일드로 Cell을 포함시킨다.
-        newObj.transform.parent = containerObj;
+        //newObj.transform.parent = containerObj;
 
         //3. Cell 오브젝트에 적용된 CellBehaviour 컴포너트를 보관한다.
-        this.cellBehaviour = newObj.transform.GetComponent<CellBehaviour>();
+        this.cellBehaviour = newObj.GetComponent<CellBehaviour>();
 
         return this;
     }

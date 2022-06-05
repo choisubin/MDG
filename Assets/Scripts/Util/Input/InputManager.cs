@@ -5,15 +5,16 @@ using UnityEngine;
 public class InputManager
 {
     Transform m_Container;
-
+    Camera m_Camera;
 #if UNITY_ANDROID && !UNITY_EDITOR
         IInputHandlerBase m_InputHandler = new TouchHandler();
 #else
     IInputHandlerBase m_InputHandler = new MouseHandler();
 #endif
-    public InputManager(Transform container)
+    public InputManager(Camera camera,Transform container)
     {
         m_Container = container;
+        m_Camera = camera;
     }
 
     public bool isTouchDown => m_InputHandler.isInputDown;
@@ -28,7 +29,7 @@ public class InputManager
     Vector2 TouchToPosition(Vector3 vtInput)
     {
         //1. 스크린 좌표 -> 월드 좌표
-        Vector3 vtMousePosW = Camera.main.ScreenToWorldPoint(vtInput);
+        Vector3 vtMousePosW = m_Camera.ScreenToWorldPoint(vtInput);
 
         //2. 컨테이너 local 좌표계로 변환(컨테이너 위치 이동시에도 컨테이너 기준의 로컬 좌표계이므로 화면 구성이 유연하다)
         Vector3 vtContainerLocal = m_Container.transform.InverseTransformPoint(vtMousePosW);

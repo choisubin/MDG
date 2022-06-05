@@ -121,14 +121,16 @@ public class Block
             return null;
 
         //1. Block 오브젝트를 생성한다.
-        GameObject newObj = Object.Instantiate(blockPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //GameObject newObj = Object.Instantiate(blockPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.Unit, "Block", containerObj);
 
         //2. 컨테이너(Board)의 차일드로 Block을 포함시킨다.
-        newObj.transform.parent = containerObj;
+        //newObj.transform.parent = containerObj;
 
         //3. Block 오브젝트에 적용된 BlockBehaviour 컴포너트를 보관한다.
-        this.blockBehaviour = newObj.transform.GetComponent<BlockBehaviour>();
-        m_BlockActionBehaviour = newObj.transform.GetComponent<BlockActionBehaviour>();
+        this.blockBehaviour = newObj.GetComponent<BlockBehaviour>();
+        this.blockBehaviour.Set();
+        m_BlockActionBehaviour = newObj.GetComponent<BlockActionBehaviour>();
 
         return this;
     }
