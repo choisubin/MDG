@@ -63,8 +63,8 @@ public class BlockBehaviour : MonoBehaviour
         ParticleSystem.MainModule newModule = explosionObj.GetComponent<ParticleSystem>().main;
         newModule.startColor = m_BlockConfig.GetBlockColor(m_Block.breed);
 
-        explosionObj.SetActive(true);
         explosionObj.transform.position = this.transform.position;
+        explosionObj.SetActive(true);
 
         yield return new WaitForSeconds(0.1f);
 

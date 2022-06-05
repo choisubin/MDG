@@ -47,9 +47,14 @@ public class PoolObject : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
+    private Vector3 _baseVecTo0 = new Vector3(0, 0, 0);
+    private Vector3 _baseVecTo1 = new Vector3(1, 1, 1);
+    private Quaternion _baseQuat = Quaternion.identity;
     public void DisableObject(Transform pool)
     {
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        transform.localScale = _baseVecTo1;
+        transform.SetPositionAndRotation(_baseVecTo0, _baseQuat);
+
         _isEnable = false;
         this.gameObject.SetActive(false);
         this.transform.SetParent(pool);
