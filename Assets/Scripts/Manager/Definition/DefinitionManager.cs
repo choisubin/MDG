@@ -47,15 +47,21 @@ public class DefinitionManager : MonoBehaviour
     Hashtable _definitions = new Hashtable();
     private void LoadAllJson()
     {
-        _definitions[typeof(StageDetailMapDefinition)] = LoadJson<StageDetailMapDefinitionContainer, int, StageDetailMapDefinition>("Definition/StageDetailMapDefinition").MakeDict();
-        _definitions[typeof(StageDetailBoardDefinition)] = LoadJson<StageDetailBoardDefinitionContainer, int, StageDetailBoardDefinition>("Definition/Stage/StageDetailBoardDefinition").MakeDict();
-    
+        LoadJson<StageDetailBoardDefinitionContainer,StageDetailBoardDefinition>("Definition/Stage/StageDetailBoardDefinition");
+        LoadJson<UnitDefinitionContainer, UnitDefinition>("Definition/Unit/UnitDefinition");
     }
-    Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
+
+    private void LoadJson<ContainerType, DefType>(string path) where ContainerType : ILoader<int, DefType>
     {
         TextAsset textAsset = Resources.Load<TextAsset>(path);
-        return JsonUtility.FromJson<Loader>(textAsset.text);
+        _definitions[typeof(DefType)] = JsonUtility.FromJson<ContainerType>(textAsset.text).MakeDict();
     }
+
+    //Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
+    //{
+    //    TextAsset textAsset = Resources.Load<TextAsset>(path);
+    //    return JsonUtility.FromJson<Loader>(textAsset.text);
+    //}
 
     public Dictionary<int, T> GetDatas<T>()
     {

@@ -59,17 +59,4 @@ public class InGameModel : BaseElement
         }
     }
 
-    private StageDetailMapDefinition _mapDef;
-    public StageDetailMapDefinition MapDef
-    {
-        get
-        {
-            if (_mapDef == null)
-            {
-                _mapDef = DefinitionManager.Instance.GetData<StageDetailMapDefinition>(_mapKey);  //나중에 key값으로 대체해야함
-            }
-            return _mapDef;
-        }
-    }
-
 }

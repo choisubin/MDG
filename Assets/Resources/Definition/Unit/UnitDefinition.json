@@ -1,0 +1,76 @@
+{
+    "definitions": [
+        {
+            "key": 1,
+            "EUnitAttackType": "SingleAtk",
+            "EUnitTargetingType": "HighHP",
+            "EUnitAttackEffect": "None",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": 2,
+            "EUnitAttackType": "MultipleAtk",
+            "EUnitTargetingType": "Front",
+            "EUnitAttackEffect": "None",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": 3,
+            "EUnitAttackType": "MultipleAtk",
+            "EUnitTargetingType": "Random",
+            "EUnitAttackEffect": "Frostbite",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": 4,
+            "EUnitAttackType": "SingleAtk",
+            "EUnitTargetingType": "Random",
+            "EUnitAttackEffect": "None",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": 5,
+            "EUnitAttackType": "MultipleAtk",
+            "EUnitTargetingType": "Random",
+            "EUnitAttackEffect": "Burn",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": 6,
+            "EUnitAttackType": "SingleAtk",
+            "EUnitTargetingType": "LowHp",
+            "EUnitAttackEffect": "None",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": 7,
+            "EUnitAttackType": "MultipleAtk",
+            "EUnitTargetingType": "Random",
+            "EUnitAttackEffect": "Corroded",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        },
+        {
+            "key": null,
+            "EUnitAttackType": "SingleAtk",
+            "EUnitTargetingType": "HighHP",
+            "EUnitAttackEffect": "Corroded",
+            "Speed": 10,
+            "BaseHp": 30,
+            "BaseAtk": 10
+        }
+    ]
+} 

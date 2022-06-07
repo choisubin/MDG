@@ -9,16 +9,12 @@ public class WayPointMove
     private Transform _trObj;
     private int _num = 0;
 
-
-    public void Init(Transform trObj)
+    public void Set(Transform trObj, Transform[] pos,float speed)
     {
         _trObj = trObj;
-    }
-    public void Set(Transform[] pos,float speed)
-    {
         _num = 0;
         _pos = pos;
-
+        SetSpeed(speed);
         if (pos.Length > 0)
         {
             _trObj.position = _pos[_num].transform.position;
@@ -38,13 +34,15 @@ public class WayPointMove
     private void MovePath()
     {
         if (_num == _pos.Length)
+        {
+            PoolManager.Instance.DespawnObject(EPrefabsType.Unit, _trObj.gameObject);
             return;
+        }
 
         _trObj.position =
             Vector2.MoveTowards(_trObj.position, _pos[_num].transform.position, _speed * Time.deltaTime);
 
         if (_trObj.position == _pos[_num].transform.position)
             _num++;
-
     }
 }

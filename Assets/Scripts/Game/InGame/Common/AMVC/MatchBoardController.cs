@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StageController : BaseController
+public class MatchBoardController : BaseController
 {
     bool m_bInit;
     Stage m_Stage;

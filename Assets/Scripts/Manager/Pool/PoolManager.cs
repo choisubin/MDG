@@ -158,15 +158,26 @@ public class PoolManager : MonoBehaviour
                 return "Prefabs/Game/InGame/MatchEffect/";
             case EPrefabsType.InGameBlock:
                 return "Prefabs/Game/InGame/Board/";
+            case EPrefabsType.Unit:
+                return "Prefabs/Game/Unit/";
+
         }
         return "Prefabs/";
     }    
 }
 public enum EPrefabsType
 {
+    //==================StateHandler==================//
     GameStateHandler,
+
+    //==================Ingame==================//
+    //MatchBoard
     InGameBoard,
     InGameMatchEffect,
     InGameBlock,
+
+    //==================Unit==================//
+    Unit,
+
 }
 
