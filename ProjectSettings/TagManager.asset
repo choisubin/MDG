@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - InGame
   - Water
   - UI
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Unit
     uniqueID: 1734027803
+    locked: 0
+  - name: InGameEffect
+    uniqueID: 3483458015
     locked: 0
   - name: UI
     uniqueID: 130148207

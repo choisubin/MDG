@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 236509186371670336}
   - component: {fileID: 8941745506126007325}
   - component: {fileID: 6260645296856226551}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FX_BLOCK_EXPLOSION_NORMAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
