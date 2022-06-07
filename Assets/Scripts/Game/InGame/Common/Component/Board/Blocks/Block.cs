@@ -122,7 +122,7 @@ public class Block
 
         //1. Block 오브젝트를 생성한다.
         //GameObject newObj = Object.Instantiate(blockPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.Unit, "Block", containerObj);
+        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBlock, "Block", containerObj);
 
         //2. 컨테이너(Board)의 차일드로 Block을 포함시킨다.
         //newObj.transform.parent = containerObj;

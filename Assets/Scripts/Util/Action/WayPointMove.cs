@@ -2,33 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPointMove : MonoBehaviour
+public class WayPointMove
 {
-    [SerializeField] private Transform[] _foodPos;
-    [SerializeField] private float speed = 5f;
-    private int foodNum = 0;
+    private Transform[] _pos;
+    private float _speed = 5f;
+    private Transform _trObj;
+    private int _num = 0;
 
-    private void Start()
+
+    public void Init(Transform trObj)
     {
-        foodNum = 0;
-        transform.position = _foodPos[foodNum].transform.position;
+        _trObj = trObj;
+    }
+    public void Set(Transform[] pos,float speed)
+    {
+        _num = 0;
+        _pos = pos;
+
+        if (pos.Length > 0)
+        {
+            _trObj.position = _pos[_num].transform.position;
+        }
     }
 
-    private void Update()
+    public void SetSpeed(float speed)
+    {
+        _speed = speed;
+    }
+
+    public void AdvanceTime(float dtTime)
     {
         MovePath();
     }
 
     private void MovePath()
     {
-        if (foodNum == _foodPos.Length)
+        if (_num == _pos.Length)
             return;
 
-        transform.position =
-            Vector2.MoveTowards(transform.position, _foodPos[foodNum].transform.position, speed * Time.deltaTime);
+        _trObj.position =
+            Vector2.MoveTowards(_trObj.position, _pos[_num].transform.position, _speed * Time.deltaTime);
 
-        if (transform.position == _foodPos[foodNum].transform.position)
-            foodNum++;
+        if (_trObj.position == _pos[_num].transform.position)
+            _num++;
 
     }
 }

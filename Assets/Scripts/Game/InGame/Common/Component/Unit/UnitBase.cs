@@ -1,34 +1,27 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+
 public class UnitBase : MonoBehaviour
 {
-    [SerializeField]
-    private EUnitType _unitType = EUnitType.TileMapUnit;
+    private WayPointMove _moveComponent;
+    [SerializeField] private Transform[] _pos;
 
-    [SerializeField]
-    private int _curXIndex;
-    [SerializeField]
-    private int _curYIndex;
-    public void Init(MapUnitWrapper wrapper)
+    void Start()
     {
-        _unitType = wrapper.unitType;
+        _moveComponent = new WayPointMove();
+        _moveComponent.Init(this.transform);
+        Set();
     }
 
     public void Set()
     {
-
+        _moveComponent.Set(_pos, 10f);
     }
 
-    public virtual void Move()
+    void Update()
     {
-        Debug.LogError("UnitBase");
-    }
-
-    public void SetPosition(Vector3 pos)
-    {
-        transform.position = pos;
+        _moveComponent.AdvanceTime(Time.deltaTime);
     }
 
 }

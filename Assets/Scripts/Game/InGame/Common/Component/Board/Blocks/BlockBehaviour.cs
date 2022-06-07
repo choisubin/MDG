@@ -70,7 +70,7 @@ public class BlockBehaviour : MonoBehaviour
 
         //3. 블럭 GameObject 객체 삭제 or make size zero
         if (bDestroy)
-            PoolManager.Instance.DespawnObject(EPrefabsType.Unit, gameObject);//Destroy(gameObject);
+            PoolManager.Instance.DespawnObject(EPrefabsType.InGameBlock, gameObject);//Destroy(gameObject);
         else
         {
             Debug.Assert(false, "Unknown Action : GameObject No Destory After Particle");
