@@ -5,80 +5,96 @@
             "EUnitAttackType": "SingleAtk",
             "EUnitTargetingType": "HighHP",
             "EUnitAttackEffect": "None",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_1"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_1",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 2,
             "EUnitAttackType": "MultipleAtk",
             "EUnitTargetingType": "Front",
             "EUnitAttackEffect": "None",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_2"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_2",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 3,
             "EUnitAttackType": "MultipleAtk",
             "EUnitTargetingType": "Random",
             "EUnitAttackEffect": "Frostbite",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_3"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_3",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 4,
             "EUnitAttackType": "SingleAtk",
             "EUnitTargetingType": "Random",
             "EUnitAttackEffect": "None",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_4"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_4",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 5,
             "EUnitAttackType": "MultipleAtk",
             "EUnitTargetingType": "Random",
             "EUnitAttackEffect": "Burn",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_5"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_5",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 6,
             "EUnitAttackType": "SingleAtk",
             "EUnitTargetingType": "LowHp",
             "EUnitAttackEffect": "None",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_6"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_6",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 7,
             "EUnitAttackType": "MultipleAtk",
             "EUnitTargetingType": "Random",
             "EUnitAttackEffect": "Corroded",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_7"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_7",
+            "AttackPrefabsName": "AttackBall"
         },
         {
             "key": 8,
             "EUnitAttackType": "SingleAtk",
             "EUnitTargetingType": "HighHP",
             "EUnitAttackEffect": "Corroded",
-            "Speed": 10,
+            "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "PrefabsName": "Unit_Basic_8"
+            "BaseAttackSpeed": 1.1,
+            "PrefabsName": "Unit_Basic_8",
+            "AttackPrefabsName": "AttackBall"
         }
     ]
 } 

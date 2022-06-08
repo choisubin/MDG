@@ -55,12 +55,12 @@ public class Board
             for (int nCol = 0; nCol < m_nCol; nCol++)
             {
                 //3.1 Cell GameObject 생성을 요청한다.GameObject가 생성되지 않는 경우에 null을 리턴한다.
-                Cell cell = m_Cells[nRow, nCol]?.InstantiateCellObj(cellPrefab, container);
+                Cell cell = m_Cells[nRow, nCol]?.InstantiateCellObj("Cell", container);
                 cell?.Move(initX + nCol, initY + nRow);
 
                 //3.2 Block GameObject 생성을 요청한다.
                 //    GameObject가 생성되지 않는 경우에 null을 리턴한다. EMPTY 인 경우에 null
-                Block block = m_Blocks[nRow, nCol]?.InstantiateBlockObj(blockPrefab, container);
+                Block block = m_Blocks[nRow, nCol]?.InstantiateBlockObj("Block",container);
                 block?.Move(initX + nCol, initY + nRow);
             }
     }
@@ -371,7 +371,7 @@ public class Board
         float fInitX = CalcInitX(Constants.BLOCK_ORG);
         float fInitY = CalcInitY(Constants.BLOCK_ORG) + m_nRow;
 
-        Block block = m_StageBuilder.SpawnBlock().InstantiateBlockObj(m_BlockPrefab, m_Container);
+        Block block = m_StageBuilder.SpawnBlock().InstantiateBlockObj("Block", m_Container);
         if (block != null)
         {
             m_Blocks[nRow, nCol] = block;
@@ -415,21 +415,21 @@ public class Board
     /*
      * Block의 종류(breed)를 변경한다.
      */
-    public void ChangeBlock(Block block, BlockBreed notAllowedBreed)
+    public void ChangeBlock(Block block, int notAllowedUnitKey)
     {
-        BlockBreed genBreed;
+        int genUnitKey;
 
         while (true)
         {
-            genBreed = (BlockBreed)UnityEngine.Random.Range(0, 6); //TODO 스테이지파일에서 Spawn 정책을 이용해야함
+            genUnitKey = UnityEngine.Random.Range(1, 5); //TODO 스테이지파일에서 Spawn 정책을 이용해야함
 
-            if (notAllowedBreed == genBreed)
+            if (notAllowedUnitKey == genUnitKey)
                 continue;
 
             break;
         }
 
-        block.breed = genBreed;
+        block.unitKey = genUnitKey;
     }
 
     public bool IsSwipeable(int nRow, int nCol)

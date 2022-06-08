@@ -59,12 +59,6 @@ public class DefinitionManager : MonoBehaviour
         _definitions[typeof(DefType)] = JsonUtility.FromJson<ContainerType>(textAsset.text).MakeDict();
     }
 
-    //Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
-    //{
-    //    TextAsset textAsset = Resources.Load<TextAsset>(path);
-    //    return JsonUtility.FromJson<Loader>(textAsset.text);
-    //}
-
     public Dictionary<int, T> GetDatas<T>()
     {
         if(_definitions.ContainsKey(typeof(T)))

@@ -43,7 +43,9 @@ public class UnitDefinition
     public float Speed;
     public float BaseHp;
     public float BaseAtk;
+    public float BaseAttackSpeed;
     public string PrefabsName;
+    public string AttackPrefabsName;
 }
 
 [Serializable]
@@ -82,7 +84,6 @@ public class StageEnemySpawnDefinitionContainer : ILoader<int, List<StageEnemySp
         Dictionary<int, List<StageEnemySpawnDefinition>> dict = new Dictionary<int, List<StageEnemySpawnDefinition>>();
         foreach (StageEnemySpawnDefinition definition in definitions)
         {
-            Debug.LogError(definition.ToString());
             if (dict.ContainsKey(definition.key))
             {
                 dict[definition.key].Add(definition);

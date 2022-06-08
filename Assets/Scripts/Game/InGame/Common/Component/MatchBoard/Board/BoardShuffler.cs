@@ -135,7 +135,7 @@ public class BoardShuffler
      */
     Block GetShuffledBlock(int nRow, int nCol)
     {
-        BlockBreed prevBreed = BlockBreed.NA;   //처음 비교시에 종류를 저장
+        int prevUnitKey = 0;   //처음 비교시에 종류를 저장
         Block firstBlock = null;                //리스트를 전부 처리하고 큐만 남은 경우에 중복 체크 위해 사용 (큐에서 꺼낸 첫번째 블럭)
 
         bool bUseQueue = true;  //true : 큐에서 꺼냄, false : 리스트에서 꺼냄
@@ -154,8 +154,8 @@ public class BoardShuffler
 
             Debug.Assert(block != null, $"block can't be null : queue  count -> {m_UnusedBlocks.Count}");
 
-            if (prevBreed == BlockBreed.NA) //첫비교시 종류 저장
-                prevBreed = block.breed;
+            if (prevUnitKey == 0) //첫비교시 종류 저장
+                prevUnitKey = block.unitKey;
 
             //3. 리스트를 모두 처리 한 경우
             if (m_bListComplete)
@@ -169,7 +169,7 @@ public class BoardShuffler
                 {
                     //3.2 처음 보았던 블럭을 다시 처리하는 경우, 
                     //    즉, 큐에 들어있는 모든 블럭이 조건에 맞지 않는 경우 (남은 블럭 중에 조건에 맞는게 없는 경우)
-                    m_Board.ChangeBlock(block, prevBreed);
+                    m_Board.ChangeBlock(block, prevUnitKey);
                 }
             }
 

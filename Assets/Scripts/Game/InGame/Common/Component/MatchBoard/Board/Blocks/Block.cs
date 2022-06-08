@@ -23,13 +23,13 @@ public class Block
         set { m_BlockType = value; }
     }
 
-    protected BlockBreed m_Breed;   //렌더링되는 블럭 캐린터(즉, 이미지 종류)
-    public BlockBreed breed
+    protected int m_UnitKey;   //렌더링되는 블럭 캐린터(즉, 이미지 종류)
+    public int unitKey
     {
-        get { return m_Breed; }
+        get { return m_UnitKey; }
         set
         {
-            m_Breed = value;
+            m_UnitKey = value;
             m_BlockBehaviour?.UpdateView(true);
         }
     }
@@ -42,6 +42,16 @@ public class Block
         {
             m_BlockBehaviour = value;
             m_BlockBehaviour.SetBlock(this);
+        }
+    }
+
+    protected UnitDefinition m_UnitDef;
+    public UnitDefinition unitDef
+    {
+        get { return m_UnitDef; }
+        set
+        {
+            m_UnitDef = value;
         }
     }
 
@@ -98,7 +108,7 @@ public class Block
         status = BlockStatus.NORMAL;
         questType = BlockQuestType.CLEAR_SIMPLE;
         match = MatchType.NONE;
-        m_Breed = BlockBreed.NA;
+        m_UnitKey = 0;
 
         m_nDurability = 1;
     }
@@ -114,7 +124,7 @@ public class Block
     /// <param name="blockPrefab"></param>
     /// <param name="containerObj"></param>
     /// <returns>return 비어있는 블럭인 경우 null, 유효한 경우 현재 block</returns>
-    internal Block InstantiateBlockObj(GameObject blockPrefab, Transform containerObj)
+    internal Block InstantiateBlockObj(string BlockName,Transform containerObj)
     {
         //유효하지 않은 블럭인 경우, Block GameObject를 생성하지 않는다.
         if (IsValidate() == false)
@@ -122,12 +132,16 @@ public class Block
 
         //1. Block 오브젝트를 생성한다.
         //GameObject newObj = Object.Instantiate(blockPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBlock, "Block", containerObj);
+        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBlock, BlockName, containerObj);
 
         //2. 컨테이너(Board)의 차일드로 Block을 포함시킨다.
         //newObj.transform.parent = containerObj;
 
         //3. Block 오브젝트에 적용된 BlockBehaviour 컴포너트를 보관한다.
+        if (m_UnitKey != 0)
+        {
+            this.unitDef = DefinitionManager.Instance.GetData<UnitDefinition>(m_UnitKey);
+        }
         this.blockBehaviour = newObj.GetComponent<BlockBehaviour>();
         this.blockBehaviour.Set();
         m_BlockActionBehaviour = newObj.GetComponent<BlockActionBehaviour>();
@@ -215,6 +229,8 @@ public class Block
     public virtual void Destroy()
     {
         Debug.Assert(blockObj != null, $"{match}");
+        Debug.LogError(unitKey);
+        AttackToEnemy();
         blockBehaviour.DoActionClear();
     }
 
@@ -242,7 +258,7 @@ public class Block
     /// <returns>breed가 같으면 true, 다르면 false</returns>
     public bool IsEqual(Block target)
     {
-        if (IsMatchableBlock() && this.breed == target.breed)
+        if (IsMatchableBlock() && this.unitKey == target.unitKey)
             return true;
 
         return false;
@@ -275,5 +291,11 @@ public class Block
             return false;
 
         return true;
+    }
+
+    public void AttackToEnemy()
+    {
+        GameObject go = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameAttack, m_UnitDef.AttackPrefabsName);
+        go.transform.position = this.blockObj.transform.position;
     }
 }

@@ -10,9 +10,9 @@ public static class BlockFactory
 
         //Set Breed
         if (blockType == BlockType.BASIC)
-            block.breed = (BlockBreed)UnityEngine.Random.Range(0, 8);
+            block.unitKey = UnityEngine.Random.Range(1, 5);
         else if (blockType == BlockType.EMPTY)
-            block.breed = BlockBreed.NA;
+            block.unitKey = 0;
 
         return block;
     }

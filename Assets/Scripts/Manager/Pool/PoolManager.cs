@@ -160,6 +160,8 @@ public class PoolManager : MonoBehaviour
                 return "Prefabs/Game/InGame/Board/";
             case EPrefabsType.Unit:
                 return "Prefabs/Game/Unit/";
+            case EPrefabsType.InGameAttack:
+                return "Prefabs/Game/InGame/Attack/";
 
         }
         return "Prefabs/";
@@ -176,6 +178,8 @@ public enum EPrefabsType
     InGameMatchEffect,
     InGameBlock,
 
+    //Attack
+    InGameAttack,
     //==================Unit==================//
     Unit,
 

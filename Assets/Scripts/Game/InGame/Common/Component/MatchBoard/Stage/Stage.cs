@@ -221,7 +221,7 @@ public class Stage
             for (int nCol = 0; nCol < maxCol; nCol++)
             {
                 strCells.Append($"{cells[nRow, nCol].type}, ");
-                strBlocks.Append($"{blocks[nRow, nCol].breed}, ");
+                strBlocks.Append($"{blocks[nRow, nCol].unitKey}, ");
             }
 
             strCells.Append("\n");

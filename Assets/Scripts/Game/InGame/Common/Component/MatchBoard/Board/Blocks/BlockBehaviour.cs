@@ -38,7 +38,7 @@ public class BlockBehaviour : MonoBehaviour
         }
         else if (m_Block.type == BlockType.BASIC)
         {
-            m_SpriteRenderer.sprite = m_BlockConfig.basicBlockSprites[(int)m_Block.breed];
+            m_SpriteRenderer.sprite = m_BlockConfig.basicBlockSprites[(int)m_Block.unitKey];
         }
     }
 
@@ -61,7 +61,7 @@ public class BlockBehaviour : MonoBehaviour
         //2. 폭파시키는 효과 연출 : 블럭 자체의 Clear 효과를 연출한다 (모든 블럭 동일)
         GameObject explosionObj = m_BlockConfig.GetExplosionObject(BlockQuestType.CLEAR_SIMPLE);
         ParticleSystem.MainModule newModule = explosionObj.GetComponent<ParticleSystem>().main;
-        newModule.startColor = m_BlockConfig.GetBlockColor(m_Block.breed);
+        newModule.startColor = m_BlockConfig.GetBlockColor(m_Block.unitKey);
 
         explosionObj.transform.position = this.transform.position;
         explosionObj.SetActive(true);

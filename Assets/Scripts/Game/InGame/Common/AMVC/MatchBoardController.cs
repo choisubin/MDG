@@ -47,7 +47,7 @@ public class MatchBoardController : BaseController
         m_bInit = true;
         m_InputManager = new InputManager(m_BoardCamera, m_Container);
 
-        BuildStage();
+        BuildStage(2);
 
         //m_Stage.PrintAll();
     }
@@ -56,10 +56,10 @@ public class MatchBoardController : BaseController
      * 스테이지를 구성한다.
      * Stage 객체를 할당받고, Stage 구성을 요청한다.
      */
-    private void BuildStage()
+    private void BuildStage(int stageKey)
     {
         //1. Stage를 구성한다.
-        m_Stage = StageBuilder.BuildStage(nStage: 1);
+        m_Stage = StageBuilder.BuildStage(stageKey);
         m_ActionManager = new ActionManager(m_Container, m_Stage);
 
         //2. 생성한 stage 정보를 이용하여 씬을 구성한.

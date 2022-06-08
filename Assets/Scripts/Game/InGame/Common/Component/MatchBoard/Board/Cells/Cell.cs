@@ -42,11 +42,11 @@ public class Cell
     /// <param name="cellPrefab">Cell Prefab</param>
     /// <param name="containerObj">생성된 GameObject의 부모(Board GameObject)</param>
     /// <returns></returns>
-    public Cell InstantiateCellObj(GameObject cellPrefab, Transform containerObj)
+    public Cell InstantiateCellObj(string CellName,Transform containerObj)
     {
         //1. Cell 오브젝트를 생성한다.
         //GameObject newObj = Object.Instantiate(cellPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBoard, "Cell", containerObj);
+        GameObject newObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameBoard, CellName, containerObj);
 
         //2. 컨테이너(Board)의 차일드로 Cell을 포함시킨다.
         //newObj.transform.parent = containerObj;

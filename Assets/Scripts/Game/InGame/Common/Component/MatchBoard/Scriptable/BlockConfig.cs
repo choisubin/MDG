@@ -20,8 +20,8 @@ public class BlockConfig : ScriptableObject
         }
     }
 
-    public Color GetBlockColor(BlockBreed breed)
+    public Color GetBlockColor(int unitKey)
     {
-        return blockColors[(int)breed];
+        return blockColors[(int)unitKey];
     }
 }
