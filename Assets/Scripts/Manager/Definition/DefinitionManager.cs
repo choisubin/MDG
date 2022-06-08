@@ -8,6 +8,7 @@ public interface ILoader<Key, Value>
     Dictionary<Key, Value> MakeDict();
 }
 
+
 public class DefinitionManager : MonoBehaviour 
 {
     #region Singelton
@@ -47,13 +48,14 @@ public class DefinitionManager : MonoBehaviour
     Hashtable _definitions = new Hashtable();
     private void LoadAllJson()
     {
-        LoadJson<StageDetailBoardDefinitionContainer,StageDetailBoardDefinition>("Definition/Stage/StageDetailBoardDefinition");
-        LoadJson<UnitDefinitionContainer, UnitDefinition>("Definition/Unit/UnitDefinition");
+        LoadJson<StageDetailBoardDefinitionContainer,StageDetailBoardDefinition>("Stage/StageDetailBoardDefinition");
+        LoadJson<UnitDefinitionContainer, UnitDefinition>("Unit/UnitDefinition");
+        LoadJson<StageEnemySpawnDefinitionContainer, List<StageEnemySpawnDefinition>>("Stage/StageMonsterSpawnDefinition");
     }
 
     private void LoadJson<ContainerType, DefType>(string path) where ContainerType : ILoader<int, DefType>
     {
-        TextAsset textAsset = Resources.Load<TextAsset>(path);
+        TextAsset textAsset = Resources.Load<TextAsset>("Definition/" +path);
         _definitions[typeof(DefType)] = JsonUtility.FromJson<ContainerType>(textAsset.text).MakeDict();
     }
 

@@ -7,7 +7,8 @@
             "EUnitAttackEffect": "None",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_1"
         },
         {
             "key": 2,
@@ -16,7 +17,8 @@
             "EUnitAttackEffect": "None",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_2"
         },
         {
             "key": 3,
@@ -25,7 +27,8 @@
             "EUnitAttackEffect": "Frostbite",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_3"
         },
         {
             "key": 4,
@@ -34,7 +37,8 @@
             "EUnitAttackEffect": "None",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_4"
         },
         {
             "key": 5,
@@ -43,7 +47,8 @@
             "EUnitAttackEffect": "Burn",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_5"
         },
         {
             "key": 6,
@@ -52,7 +57,8 @@
             "EUnitAttackEffect": "None",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_6"
         },
         {
             "key": 7,
@@ -61,16 +67,18 @@
             "EUnitAttackEffect": "Corroded",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_7"
         },
         {
-            "key": null,
+            "key": 8,
             "EUnitAttackType": "SingleAtk",
             "EUnitTargetingType": "HighHP",
             "EUnitAttackEffect": "Corroded",
             "Speed": 10,
             "BaseHp": 30,
-            "BaseAtk": 10
+            "BaseAtk": 10,
+            "PrefabsName": "Unit_Basic_8"
         }
     ]
 } 

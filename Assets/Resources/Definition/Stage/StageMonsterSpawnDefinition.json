@@ -1,0 +1,40 @@
+{
+    "definitions": [
+        {
+            "key": 1,
+            "StageNum": 1,
+            "PartNum": 1,
+            "Time": 0.5,
+            "SpawnUnitKey": 1,
+            "SpawnUnitNum": 4,
+            "SpawnCycle": 0.1
+        },
+        {
+            "key": 1,
+            "StageNum": 1,
+            "PartNum": 1,
+            "Time": 0.5,
+            "SpawnUnitKey": 3,
+            "SpawnUnitNum": 2,
+            "SpawnCycle": 0.3
+        },
+        {
+            "key": 1,
+            "StageNum": 1,
+            "PartNum": 1,
+            "Time": 1,
+            "SpawnUnitKey": 1,
+            "SpawnUnitNum": 3,
+            "SpawnCycle": 1
+        },
+        {
+            "key": 1,
+            "StageNum": 1,
+            "PartNum": 1,
+            "Time": 3,
+            "SpawnUnitKey": 2,
+            "SpawnUnitNum": 7,
+            "SpawnCycle": 0.4
+        }
+    ]
+}

@@ -43,6 +43,7 @@ public class UnitDefinition
     public float Speed;
     public float BaseHp;
     public float BaseAtk;
+    public string PrefabsName;
 }
 
 [Serializable]
@@ -55,6 +56,42 @@ public class UnitDefinitionContainer : ILoader<int, UnitDefinition>
         foreach (UnitDefinition definition in definitions)
         {
             dict.Add(definition.key, definition);
+        }
+        return dict;
+    }
+}
+
+[Serializable]
+public class StageEnemySpawnDefinition
+{
+    public int key;
+    public int StageNum;
+    public int PartNum;
+    public float Time;
+    public int SpawnUnitKey;
+    public int SpawnUnitNum;
+    public float SpawnCycle;
+}
+
+[Serializable]
+public class StageEnemySpawnDefinitionContainer : ILoader<int, List<StageEnemySpawnDefinition>>
+{
+    public List<StageEnemySpawnDefinition> definitions = new List<StageEnemySpawnDefinition>();
+    public Dictionary<int, List<StageEnemySpawnDefinition>> MakeDict()
+    {
+        Dictionary<int, List<StageEnemySpawnDefinition>> dict = new Dictionary<int, List<StageEnemySpawnDefinition>>();
+        foreach (StageEnemySpawnDefinition definition in definitions)
+        {
+            Debug.LogError(definition.ToString());
+            if (dict.ContainsKey(definition.key))
+            {
+                dict[definition.key].Add(definition);
+            }
+            else
+            {
+                dict.Add(definition.key, new List<StageEnemySpawnDefinition>());
+                dict[definition.key].Add(definition);
+            }
         }
         return dict;
     }

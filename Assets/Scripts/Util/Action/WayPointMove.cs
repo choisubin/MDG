@@ -8,9 +8,18 @@ public class WayPointMove
     private float _speed = 5f;
     private Transform _trObj;
     private int _num = 0;
+    private bool _isArrive = false;
+    public bool IsArrive
+    {
+        get
+        {
+            return _isArrive;
+        }
+    }
 
     public void Set(Transform trObj, Transform[] pos,float speed)
     {
+        _isArrive = false;
         _trObj = trObj;
         _num = 0;
         _pos = pos;
@@ -35,7 +44,7 @@ public class WayPointMove
     {
         if (_num == _pos.Length)
         {
-            PoolManager.Instance.DespawnObject(EPrefabsType.Unit, _trObj.gameObject);
+            _isArrive = true;
             return;
         }
 
