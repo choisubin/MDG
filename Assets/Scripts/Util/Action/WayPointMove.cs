@@ -16,6 +16,14 @@ public class WayPointMove
             return _isArrive;
         }
     }
+    private bool _isTargetEnable = true;
+    public bool IsTargetEnable
+    {
+        get
+        {
+            return _isTargetEnable;
+        }
+    }
 
     public void Set(Transform trObj, Transform[] pos,float speed)
     {
@@ -61,6 +69,8 @@ public class WayPointMove
                 _isArrive = true;
                 return;
             }
+
+            _isTargetEnable = _pos[_num].gameObject.activeSelf;
 
             _trObj.position =
                 Vector2.MoveTowards(_trObj.position, _pos[_num].transform.position, _speed * Time.deltaTime);

@@ -229,7 +229,6 @@ public class Block
     public virtual void Destroy()
     {
         Debug.Assert(blockObj != null, $"{match}");
-        Debug.LogError(match);
         AttackToEnemy();
         blockBehaviour.DoActionClear();
     }
@@ -297,7 +296,7 @@ public class Block
     {
         Hashtable sendData = new Hashtable();
         sendData.Add(EDataParamKey.AttackWrapper,
-            new AttackWrapper(m_UnitDef.BaseAttackSpeed, m_UnitDef.BaseAtk, m_UnitDef.AttackPrefabsName, blockObj.transform, null));
+            new AttackWrapper(m_UnitDef, blockObj.transform, null));
         NotificationCenter.Instance.PostNotification(ENotiMessage.OnMatchBlock, sendData);
     }
 }

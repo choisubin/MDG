@@ -11,8 +11,6 @@ public class DefenseMapController : BaseController
 
     private Dictionary<int, UnitDefinition> _unitDefDic = new Dictionary<int, UnitDefinition>();
 
-    private Dictionary<float, List<int>> _currentScheduleDic = new Dictionary<float, List<int>>();
-
     public override void Init()
     {
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnMatchBlock);
@@ -67,6 +65,7 @@ public class DefenseMapController : BaseController
     }
 
     private List<StageEnemySpawnDefinition> _spawnDefList = new List<StageEnemySpawnDefinition>();
+    private Dictionary<float, List<int>> _currentScheduleDic = new Dictionary<float, List<int>>();
     private void SetSpawnSchedule(int defKey)
     {
         _spawnDefList = DefinitionManager.Instance.GetData<List<StageEnemySpawnDefinition>>(defKey);
@@ -144,12 +143,14 @@ public class DefenseMapController : BaseController
     private AttackBase _tempAttackBase;
     private void SpawnAttack(AttackWrapper wrapper)
     {
-        if(_unitList.Count>0)
+        if (_unitList.Count > 0)
+        {
             wrapper.targetEnemyTr = _unitList[0].transform;
-        _tempAttackObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameAttack, wrapper.prefabsName);
-        _tempAttackBase = _tempAttackObj.GetComponent<AttackBase>();
-        _tempAttackBase.Set(wrapper);
-        _attackList.Add(_tempAttackBase);
+            _tempAttackObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameAttack, wrapper.prefabsName);
+            _tempAttackBase = _tempAttackObj.GetComponent<AttackBase>();
+            _tempAttackBase.Set(wrapper);
+            _attackList.Add(_tempAttackBase);
+        }
     }
 
     private void AdvanceAttack(float dt_sec)

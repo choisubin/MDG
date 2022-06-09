@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class AttackWrapper
 {
-    public float attackSpeed;
-    public float baseAtk;
-    public string prefabsName;
+    public UnitDefinition unitDefinition;
     public Transform startUnitTr;
     public Transform targetEnemyTr;
 
-    public AttackWrapper(float attackSpeed, float baseAtk, string prefabsName, Transform startUnitTr, Transform targetEnemyTr)
+    public float atkSpeed
     {
-        this.attackSpeed = attackSpeed;
-        this.baseAtk = baseAtk;
-        this.prefabsName = prefabsName;
+        get
+        {
+            return unitDefinition.BaseAttackSpeed;
+        }
+    }
+    public string prefabsName
+    {
+        get
+        {
+            return unitDefinition.AttackPrefabsName;
+        }
+    }
+
+    public AttackWrapper(UnitDefinition unitDefinition, Transform startUnitTr, Transform targetEnemyTr)
+    {
+        this.unitDefinition = unitDefinition;
         this.startUnitTr = startUnitTr;
         this.targetEnemyTr = targetEnemyTr;
     }
+    
 }
