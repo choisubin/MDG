@@ -19,8 +19,8 @@ public class Board
     public Block[,] blocks { get { return m_Blocks; } }
 
     Transform m_Container;
-    GameObject m_CellPrefab;
-    GameObject m_BlockPrefab;
+    string m_CellPrefabName;
+    string m_BlockPrefabName;
     StageBuilder m_StageBuilder;
 
     BoardEnumerator m_Enumerator;
@@ -36,11 +36,11 @@ public class Board
         m_Enumerator = new BoardEnumerator(this);
     }
 
-    internal void ComposeStage(GameObject cellPrefab, GameObject blockPrefab, Transform container, StageBuilder stageBuilder)
+    internal void ComposeStage(string cellPrefabName, string blockPrefabName, Transform container, StageBuilder stageBuilder)
     {
         //1. 스테이지 구성에 필요한 Cell,Block, Container(Board) 정보를 저장한다. 
-        m_CellPrefab = cellPrefab;
-        m_BlockPrefab = blockPrefab;
+        m_CellPrefabName = cellPrefabName;
+        m_BlockPrefabName = blockPrefabName;
         m_Container = container;
         m_StageBuilder = stageBuilder;
 
@@ -55,12 +55,12 @@ public class Board
             for (int nCol = 0; nCol < m_nCol; nCol++)
             {
                 //3.1 Cell GameObject 생성을 요청한다.GameObject가 생성되지 않는 경우에 null을 리턴한다.
-                Cell cell = m_Cells[nRow, nCol]?.InstantiateCellObj("Cell", container);
+                Cell cell = m_Cells[nRow, nCol]?.InstantiateCellObj(cellPrefabName, container);
                 cell?.Move(initX + nCol, initY + nRow);
 
                 //3.2 Block GameObject 생성을 요청한다.
                 //    GameObject가 생성되지 않는 경우에 null을 리턴한다. EMPTY 인 경우에 null
-                Block block = m_Blocks[nRow, nCol]?.InstantiateBlockObj("Block",container);
+                Block block = m_Blocks[nRow, nCol]?.InstantiateBlockObj(blockPrefabName, container);
                 block?.Move(initX + nCol, initY + nRow);
             }
     }

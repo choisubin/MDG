@@ -14,8 +14,6 @@ public class MatchBoardController : BaseController
     Vector3 m_ClickPos;         //DOWN 위치(보드 기준 Local 좌표)
 
     [SerializeField] Transform m_Container;
-    [SerializeField] GameObject m_CellPrefab;
-    [SerializeField] GameObject m_BlockPrefab;
     [SerializeField] Camera m_BoardCamera;
 
     public override void Init()
@@ -63,7 +61,7 @@ public class MatchBoardController : BaseController
         m_ActionManager = new ActionManager(m_Container, m_Stage);
 
         //2. 생성한 stage 정보를 이용하여 씬을 구성한.
-        m_Stage.ComposeStage(m_CellPrefab, m_BlockPrefab, m_Container);
+        m_Stage.ComposeStage("Cell", "Block", m_Container);
     }
 
     private void OnInputHandler()

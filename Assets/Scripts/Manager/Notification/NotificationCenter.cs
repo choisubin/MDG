@@ -170,13 +170,21 @@ public enum ENotiMessage
 
     //500 ~ 1000 GameSceneState 관련
     ChangeSceneState = 500,
-    //1000 ~ 2000 Bounce 관련
-    OnBallHitGround = 1000,
+    //1001 ~ 2000 Bounce 관련
+    OnBallHitGround = 1001,
     TestNoti,
+
+    //2001~3000
+    //InGame Notification
+    OnMatchBlock = 2001,    
 }
 
 public enum EDataParamKey
 {
     //숫자관련
-    Integer, //일반 int 변수형 낱개로 보낼때
+    Integer, //일반 int 변수형 낱개로 보낼 때
+    Transform, //transform 낱개로 보낼 때
+
+    //사용자 정의 클래스
+    AttackWrapper,
 }

@@ -7,6 +7,7 @@ public class DefenseMapController : BaseController
     [SerializeField]private DefenseMapBase _defenseMap;
 
     private List<UnitBase> _unitList = new List<UnitBase>();
+    private List<AttackBase> _attackList = new List<AttackBase>();
 
     private Dictionary<int, UnitDefinition> _unitDefDic = new Dictionary<int, UnitDefinition>();
 
@@ -14,6 +15,7 @@ public class DefenseMapController : BaseController
 
     public override void Init()
     {
+        NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnMatchBlock);
         _unitDefDic = DefinitionManager.Instance.GetDatas<UnitDefinition>();
     }
 
@@ -27,19 +29,35 @@ public class DefenseMapController : BaseController
     {
         _currentTime += dt_sec;
 
+        //Unit관련
         RemoveEnemyToMap();
-
         SpawnScheduling(_currentTime);
-
         AdvanceUnits(dt_sec);
+
+        //Attack관련
+        RemoveAttackToMap();
+        AdvanceAttack(dt_sec);
+    }
+
+    private AttackWrapper _tempAttackWrapper;
+    public void OnNotification(Notification noti)
+    {
+        switch (noti.msg)
+        {
+            case ENotiMessage.OnMatchBlock:
+                _tempAttackWrapper = (AttackWrapper)noti.data[EDataParamKey.AttackWrapper];
+                SpawnAttack(_tempAttackWrapper);
+                break;
+        }
     }
 
     public override void Dispose()
     {
+        NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.OnMatchBlock);
     }
 
-    #region private Method
 
+    #region Unit관련
     private void AdvanceUnits(float dt_sec)
     {
         foreach(var unit in _unitList)
@@ -118,5 +136,45 @@ public class DefenseMapController : BaseController
         }
     }
 
+    #endregion
+
+    #region attack관련
+
+    private GameObject _tempAttackObj;
+    private AttackBase _tempAttackBase;
+    private void SpawnAttack(AttackWrapper wrapper)
+    {
+        if(_unitList.Count>0)
+            wrapper.targetEnemyTr = _unitList[0].transform;
+        _tempAttackObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameAttack, wrapper.prefabsName);
+        _tempAttackBase = _tempAttackObj.GetComponent<AttackBase>();
+        _tempAttackBase.Set(wrapper);
+        _attackList.Add(_tempAttackBase);
+    }
+
+    private void AdvanceAttack(float dt_sec)
+    {
+        foreach (var attack in _attackList)
+        {
+            attack.AdvanceTime(dt_sec);
+        }
+    }
+
+    private List<AttackBase> _attackBaseRemoveList = new List<AttackBase>();
+    private void RemoveAttackToMap()
+    {
+        _attackBaseRemoveList.Clear();
+        foreach (var attack in _attackList)
+        {
+            if (!attack.IsAlive)
+            {
+                _attackBaseRemoveList.Add(attack);
+            }
+        }
+        foreach (var remove in _attackBaseRemoveList)
+        {
+            _attackList.Remove(remove);
+        }
+    }
     #endregion
 }

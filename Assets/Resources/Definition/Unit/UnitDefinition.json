@@ -8,7 +8,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_1",
             "AttackPrefabsName": "AttackBall"
         },
@@ -20,7 +20,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_2",
             "AttackPrefabsName": "AttackBall"
         },
@@ -32,7 +32,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_3",
             "AttackPrefabsName": "AttackBall"
         },
@@ -44,7 +44,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_4",
             "AttackPrefabsName": "AttackBall"
         },
@@ -56,7 +56,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_5",
             "AttackPrefabsName": "AttackBall"
         },
@@ -68,7 +68,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_6",
             "AttackPrefabsName": "AttackBall"
         },
@@ -80,7 +80,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_7",
             "AttackPrefabsName": "AttackBall"
         },
@@ -92,7 +92,7 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 1.1,
+            "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_8",
             "AttackPrefabsName": "AttackBall"
         }

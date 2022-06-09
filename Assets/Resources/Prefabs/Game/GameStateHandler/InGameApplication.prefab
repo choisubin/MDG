@@ -239,10 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8118268827430260069}
-  m_CellPrefab: {fileID: 7854952908377182720, guid: 774c924614d694b9abba7aaed0236867,
-    type: 3}
-  m_BlockPrefab: {fileID: 7274918146034523890, guid: f9ff182ef6a2e4109832628c0cab1f2a,
-    type: 3}
   m_BoardCamera: {fileID: 4677148732127231224}
 --- !u!1 &2197738950097517901
 GameObject:
@@ -442,7 +438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3ef9da209cb13448df585877c9fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _time: 0
 --- !u!114 &3384388913897822478
 MonoBehaviour:
   m_ObjectHideFlags: 0

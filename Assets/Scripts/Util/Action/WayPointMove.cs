@@ -30,6 +30,18 @@ public class WayPointMove
         }
     }
 
+    public void Set(Transform trObj,Transform startPos, Transform endPos, float speed)
+    {
+        _isArrive = false;
+        _trObj = trObj;
+        _num = 0;
+        _pos = new Transform[2];
+        _pos[0] = startPos;
+        _pos[1] = endPos;
+        SetSpeed(speed);
+        _trObj.position = _pos[_num].transform.position;
+    }
+
     public void SetSpeed(float speed)
     {
         _speed = speed;
@@ -42,16 +54,19 @@ public class WayPointMove
 
     private void MovePath()
     {
-        if (_num == _pos.Length)
+        if (_pos[1] != null)
         {
-            _isArrive = true;
-            return;
+            if (_num == _pos.Length)
+            {
+                _isArrive = true;
+                return;
+            }
+
+            _trObj.position =
+                Vector2.MoveTowards(_trObj.position, _pos[_num].transform.position, _speed * Time.deltaTime);
+
+            if (_trObj.position == _pos[_num].transform.position)
+                _num++;
         }
-
-        _trObj.position =
-            Vector2.MoveTowards(_trObj.position, _pos[_num].transform.position, _speed * Time.deltaTime);
-
-        if (_trObj.position == _pos[_num].transform.position)
-            _num++;
     }
 }

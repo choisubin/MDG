@@ -35,9 +35,9 @@ public class Stage
     /// <param name="cellPrefab">Cell Prefab</param>
     /// <param name="blockPrefab">Board Prefab</param>
     /// <param name="container">Cell/Board GameObject의 부모 GameObject</param>
-    internal void ComposeStage(GameObject cellPrefab, GameObject blockPrefab, Transform container)
+    internal void ComposeStage(string cellPrefabName, string blockPrefabName, Transform container)
     {
-        _board.ComposeStage(cellPrefab, blockPrefab, container, m_StageBuilder);
+        _board.ComposeStage(cellPrefabName, blockPrefabName, container, m_StageBuilder);
     }
 
     /*
