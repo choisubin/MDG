@@ -23,6 +23,14 @@ public class AttackWrapper
         }
     }
 
+    public int attackCount
+    {
+        get
+        {
+            return unitDefinition.UnitAttackNum;
+        }
+    }
+
     public EUnitTargetingType unitTargetingType
     {
         get
@@ -30,6 +38,7 @@ public class AttackWrapper
             return unitDefinition.EUnitTargetingType;
         }
     }
+
 
     public AttackWrapper(UnitWrapperDefinition unitDefinition, Transform startUnitTr, Transform targetEnemyTr)
     {

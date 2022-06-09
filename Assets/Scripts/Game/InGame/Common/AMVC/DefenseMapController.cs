@@ -10,6 +10,7 @@ public class DefenseMapController : BaseController
     private List<UnitBase> _unitList = new List<UnitBase>();
     private List<AttackBase> _attackList = new List<AttackBase>();
 
+    #region property
     private List<UnitBase> _unitHighHpSortList
     {
         get
@@ -40,6 +41,7 @@ public class DefenseMapController : BaseController
             return _unitList.OrderBy(a => a.ArriveScore).ThenBy(a => a.CurrentHP).ToList();
         }
     }
+#endregion
 
     private Dictionary<int, UnitWrapperDefinition> _unitDefDic = new Dictionary<int, UnitWrapperDefinition>();
 
@@ -225,7 +227,7 @@ public class DefenseMapController : BaseController
     {
         if (_unitList.Count > 0)
         {
-            List<Transform> trList = GetTargetTransforms(wrapper.unitTargetingType,5);
+            List<Transform> trList = GetTargetTransforms(wrapper.unitTargetingType, wrapper.attackCount);
             foreach(var target in trList)
             {
                 wrapper.targetEnemyTr = target;

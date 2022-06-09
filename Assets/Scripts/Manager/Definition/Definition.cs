@@ -36,9 +36,10 @@ public class StageDetailBoardDefinitionContainer : ILoader<int, StageDetailBoard
 public class UnitWrapperDefinition
 {
     public int key;
-    public EUnitAttackType EUnitAttackType;
     public EUnitTargetingType EUnitTargetingType;
     public EUnitAttackEffect EUnitAttackEffect;
+    public EUnitAttackType EUnitAttackType;
+    public int UnitAttackNum;
     public float Speed;
     public float BaseHp;
     public float BaseAtk;
@@ -56,6 +57,7 @@ public class UnitWrapperDefinition
         EUnitAttackType = (EUnitAttackType)Enum.Parse(typeof(EUnitAttackType), def.EUnitAttackType);
         EUnitTargetingType = (EUnitTargetingType)Enum.Parse(typeof(EUnitTargetingType), def.EUnitTargetingType);
         EUnitAttackEffect = (EUnitAttackEffect)Enum.Parse(typeof(EUnitAttackEffect), def.EUnitAttackEffect);
+        UnitAttackNum = def.UnitAttackNum;
         Speed = def.Speed;
         BaseHp = def.BaseHp;
         BaseAtk = def.BaseAtk;
@@ -69,9 +71,10 @@ public class UnitWrapperDefinition
 public class UnitDefinition
 {
     public int key;
-    public string EUnitAttackType;
     public string EUnitTargetingType;
     public string EUnitAttackEffect;
+    public string EUnitAttackType;
+    public int UnitAttackNum;
     public float Speed;
     public float BaseHp;
     public float BaseAtk;
