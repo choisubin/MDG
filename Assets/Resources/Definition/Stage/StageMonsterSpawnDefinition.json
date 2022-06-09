@@ -35,6 +35,15 @@
             "SpawnUnitKey": 2,
             "SpawnUnitNum": 7,
             "SpawnCycle": 0.4
+        },
+        {
+            "key": 2,
+            "StageNum": 1,
+            "PartNum": 2,
+            "Time": 1,
+            "SpawnUnitKey": 4,
+            "SpawnUnitNum": 20,
+            "SpawnCycle": 1
         }
     ]
 }

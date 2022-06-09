@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DefenseMapController : BaseController
@@ -9,17 +10,48 @@ public class DefenseMapController : BaseController
     private List<UnitBase> _unitList = new List<UnitBase>();
     private List<AttackBase> _attackList = new List<AttackBase>();
 
-    private Dictionary<int, UnitDefinition> _unitDefDic = new Dictionary<int, UnitDefinition>();
+    private List<UnitBase> _unitHighHpSortList
+    {
+        get
+        {
+            return _unitList.OrderByDescending(a => a.CurrentHP).ThenByDescending(a => a.ArriveScore).ToList();
+        }
+    }
+    private List<UnitBase> _unitLowHpSortList
+    {
+        get
+        {
+            return _unitList.OrderBy(a => a.CurrentHP).ThenByDescending(a => a.ArriveScore).ToList();
+        }
+    }
+
+    private List<UnitBase> _unitHighArriveScoreSortList
+    {
+        get
+        {
+            return _unitList.OrderByDescending(a => a.ArriveScore).ThenBy(a => a.CurrentHP).ToList();
+        }
+    }
+
+    private List<UnitBase> _unitLowArriveScoreSortList
+    {
+        get
+        {
+            return _unitList.OrderBy(a => a.ArriveScore).ThenBy(a => a.CurrentHP).ToList();
+        }
+    }
+
+    private Dictionary<int, UnitWrapperDefinition> _unitDefDic = new Dictionary<int, UnitWrapperDefinition>();
 
     public override void Init()
     {
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnMatchBlock);
-        _unitDefDic = DefinitionManager.Instance.GetDatas<UnitDefinition>();
+        _unitDefDic = DefinitionManager.Instance.GetDatas<UnitWrapperDefinition>();
     }
 
     public override void Set()
     {
-        SetSpawnSchedule(1);
+        SetSpawnSchedule(2);
     }
 
     float _currentTime = 0;
@@ -56,6 +88,54 @@ public class DefenseMapController : BaseController
 
 
     #region Unit관련
+    private List<Transform> _targetTrList = new List<Transform>();
+    public List<Transform> GetTargetTransforms(EUnitTargetingType targetingType, int targetCount)
+    {
+        _targetTrList.Clear();
+        int ctn = 0;
+        switch (targetingType)
+        {
+            case EUnitTargetingType.Front:
+                foreach (var unit in _unitHighArriveScoreSortList)
+                {
+                    if (unit.ArriveScore != 0)
+                    {
+                        ctn++;
+                        _targetTrList.Add(unit.transform);
+                    }
+                    if (ctn >= targetCount)
+                        return _targetTrList;
+                }
+                break;
+            case EUnitTargetingType.HighHP:
+                foreach (var unit in _unitHighHpSortList)
+                {
+                    ctn++;
+                    _targetTrList.Add(unit.transform);
+                    if (ctn >= targetCount)
+                        return _targetTrList;
+                }
+                break;
+            case EUnitTargetingType.LowHp:
+                foreach (var unit in _unitLowHpSortList)
+                {
+                    ctn++;
+                    _targetTrList.Add(unit.transform);
+                    if (ctn >= targetCount)
+                        return _targetTrList;
+                }
+                break;
+            case EUnitTargetingType.Random:
+            default:
+                for (int i = 0; i < targetCount; i++)
+                {
+                    _targetTrList.Add(_unitList[Random.Range(0, _unitList.Count)].transform);
+                }
+                break;
+        }
+        return _targetTrList;
+    }
+
     private void AdvanceUnits(float dt_sec)
     {
         foreach(var unit in _unitList)
@@ -106,7 +186,7 @@ public class DefenseMapController : BaseController
         }
     }
 
-    private UnitDefinition _unitDef;
+    private UnitWrapperDefinition _unitDef;
     private GameObject _tempUnitObj;
     private UnitBase _tempUnitBase;
     private void SpawnEnemy(int enemyKey)
@@ -145,19 +225,40 @@ public class DefenseMapController : BaseController
     {
         if (_unitList.Count > 0)
         {
-            wrapper.targetEnemyTr = _unitList[0].transform;
-            _tempAttackObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameAttack, wrapper.prefabsName);
-            _tempAttackBase = _tempAttackObj.GetComponent<AttackBase>();
-            _tempAttackBase.Set(wrapper);
-            _attackList.Add(_tempAttackBase);
+            List<Transform> trList = GetTargetTransforms(wrapper.unitTargetingType,5);
+            foreach(var target in trList)
+            {
+                wrapper.targetEnemyTr = target;
+                _tempAttackObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameAttack, wrapper.prefabsName);
+                _tempAttackBase = _tempAttackObj.GetComponent<AttackBase>();
+                _tempAttackBase.Set(wrapper);
+                _attackList.Add(_tempAttackBase);
+            }
         }
     }
 
+    private List<Transform> _newTargetTr = new List<Transform>();
     private void AdvanceAttack(float dt_sec)
     {
         foreach (var attack in _attackList)
         {
             attack.AdvanceTime(dt_sec);
+            if (attack.IsAlive && !attack.IsTargetEnable)//아직 살아있는데 타겟이 사라지면
+            {
+                if (_unitList.Count > 0)//남은 적이 있다면
+                {
+                    _newTargetTr.Clear();
+                    _newTargetTr = GetTargetTransforms(attack.TargetType, 1);
+                    if (_newTargetTr.Count >= 1)
+                    {
+                        attack.SetNewTarget(_newTargetTr[0]);
+                    }
+                }
+                else //남은 적이 없다면 그냥 공격 캔슬
+                {
+                    attack.AttackCancle();
+                }
+            }
         }
     }
 

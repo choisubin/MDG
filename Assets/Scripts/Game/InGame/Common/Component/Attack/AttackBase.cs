@@ -13,6 +13,22 @@ public class AttackBase : MonoBehaviour
         }
     }
 
+    public bool IsTargetEnable
+    {
+        get
+        {
+            return _moveComponent.IsTargetEnable;
+        }
+    }
+
+    public EUnitTargetingType TargetType
+    {
+        get
+        {
+            return _attackWrapper.unitTargetingType;
+        }
+    }
+
     private WayPointMove _moveComponent = new WayPointMove();
     private AttackWrapper _attackWrapper;
 
@@ -29,15 +45,26 @@ public class AttackBase : MonoBehaviour
         if (_moveComponent.IsArrive) //타겟에 무사히 도착 했을 때
         {
             SpawnExplosionEffect();
-            PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
             _isAlive = false;
+            PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
 
         }
-        else if(!_moveComponent.IsTargetEnable) //타겟에 도착하지 않았는데 타겟 오브젝트가 비활성화 되었을 u
-        {
-            PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
-            _isAlive = false;
-        }
+        //else if(!_moveComponent.IsTargetEnable) //타겟에 도착하지 않았는데 타겟 오브젝트가 비활성화 되었을 u
+        //{
+        //    PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
+        //    _isAlive = false;
+        //}
+    }
+
+    public void SetNewTarget(Transform tr)
+    {
+        _moveComponent.SetNewTarget(tr);
+    }
+
+    public void AttackCancle() //공격 취소
+    {
+        _isAlive = false;
+        PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
     }
 
     private void SpawnExplosionEffect()

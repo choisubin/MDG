@@ -33,8 +33,7 @@ public class StageDetailBoardDefinitionContainer : ILoader<int, StageDetailBoard
 }
 
 
-[Serializable]
-public class UnitDefinition
+public class UnitWrapperDefinition
 {
     public int key;
     public EUnitAttackType EUnitAttackType;
@@ -46,18 +45,51 @@ public class UnitDefinition
     public float BaseAttackSpeed;
     public string PrefabsName;
     public string AttackPrefabsName;
+
+    public UnitWrapperDefinition()
+    {
+    }
+
+    public UnitWrapperDefinition(UnitDefinition def)
+    {
+        this.key = def.key;
+        EUnitAttackType = (EUnitAttackType)Enum.Parse(typeof(EUnitAttackType), def.EUnitAttackType);
+        EUnitTargetingType = (EUnitTargetingType)Enum.Parse(typeof(EUnitTargetingType), def.EUnitTargetingType);
+        EUnitAttackEffect = (EUnitAttackEffect)Enum.Parse(typeof(EUnitAttackEffect), def.EUnitAttackEffect);
+        Speed = def.Speed;
+        BaseHp = def.BaseHp;
+        BaseAtk = def.BaseAtk;
+        BaseAttackSpeed = def.BaseAttackSpeed;
+        PrefabsName = def.PrefabsName;
+        AttackPrefabsName = def.AttackPrefabsName;
+    }
 }
 
 [Serializable]
-public class UnitDefinitionContainer : ILoader<int, UnitDefinition>
+public class UnitDefinition
+{
+    public int key;
+    public string EUnitAttackType;
+    public string EUnitTargetingType;
+    public string EUnitAttackEffect;
+    public float Speed;
+    public float BaseHp;
+    public float BaseAtk;
+    public float BaseAttackSpeed;
+    public string PrefabsName;
+    public string AttackPrefabsName;
+}
+[Serializable]
+public class UnitDefinitionContainer : ILoader<int, UnitWrapperDefinition>
 {
     public List<UnitDefinition> definitions = new List<UnitDefinition>();
-    public Dictionary<int, UnitDefinition> MakeDict()
+    public Dictionary<int, UnitWrapperDefinition> MakeDict()
     {
-        Dictionary<int, UnitDefinition> dict = new Dictionary<int, UnitDefinition>();
+        Dictionary<int, UnitWrapperDefinition> dict = new Dictionary<int, UnitWrapperDefinition>();
         foreach (UnitDefinition definition in definitions)
         {
-            dict.Add(definition.key, definition);
+            UnitWrapperDefinition wrapper = new UnitWrapperDefinition(definition);
+            dict.Add(definition.key, wrapper);
         }
         return dict;
     }

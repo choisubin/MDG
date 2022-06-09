@@ -49,7 +49,7 @@ public class DefinitionManager : MonoBehaviour
     private void LoadAllJson()
     {
         LoadJson<StageDetailBoardDefinitionContainer,StageDetailBoardDefinition>("Stage/StageDetailBoardDefinition");
-        LoadJson<UnitDefinitionContainer, UnitDefinition>("Unit/UnitDefinition");
+        LoadJson<UnitDefinitionContainer, UnitWrapperDefinition>("Unit/UnitDefinition");
         LoadJson<StageEnemySpawnDefinitionContainer, List<StageEnemySpawnDefinition>>("Stage/StageMonsterSpawnDefinition");
     }
 

@@ -45,8 +45,8 @@ public class Block
         }
     }
 
-    protected UnitDefinition m_UnitDef;
-    public UnitDefinition unitDef
+    protected UnitWrapperDefinition m_UnitDef;
+    public UnitWrapperDefinition unitDef
     {
         get { return m_UnitDef; }
         set
@@ -140,7 +140,7 @@ public class Block
         //3. Block 오브젝트에 적용된 BlockBehaviour 컴포너트를 보관한다.
         if (m_UnitKey != 0)
         {
-            this.unitDef = DefinitionManager.Instance.GetData<UnitDefinition>(m_UnitKey);
+            this.unitDef = DefinitionManager.Instance.GetData<UnitWrapperDefinition>(m_UnitKey);
         }
         this.blockBehaviour = newObj.GetComponent<BlockBehaviour>();
         this.blockBehaviour.Set();

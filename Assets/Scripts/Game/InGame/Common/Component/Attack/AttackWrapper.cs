@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackWrapper
 {
-    public UnitDefinition unitDefinition;
+    public UnitWrapperDefinition unitDefinition;
     public Transform startUnitTr;
     public Transform targetEnemyTr;
 
@@ -23,7 +23,15 @@ public class AttackWrapper
         }
     }
 
-    public AttackWrapper(UnitDefinition unitDefinition, Transform startUnitTr, Transform targetEnemyTr)
+    public EUnitTargetingType unitTargetingType
+    {
+        get
+        {
+            return unitDefinition.EUnitTargetingType;
+        }
+    }
+
+    public AttackWrapper(UnitWrapperDefinition unitDefinition, Transform startUnitTr, Transform targetEnemyTr)
     {
         this.unitDefinition = unitDefinition;
         this.startUnitTr = startUnitTr;

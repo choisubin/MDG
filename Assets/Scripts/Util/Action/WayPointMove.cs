@@ -5,9 +5,11 @@ using UnityEngine;
 public class WayPointMove
 {
     private Transform[] _pos;
-    private float _speed = 5f;
     private Transform _trObj;
+
+    private float _speed = 5f;
     private int _num = 0;
+
     private bool _isArrive = false;
     public bool IsArrive
     {
@@ -16,12 +18,23 @@ public class WayPointMove
             return _isArrive;
         }
     }
+
     private bool _isTargetEnable = true;
     public bool IsTargetEnable
     {
         get
         {
             return _isTargetEnable;
+        }
+    }
+
+    public float ArriveScore //도착에 가까울 수록 높은 숫자 저장 (가까운 몬스터 구분 용)
+    {
+        get
+        {
+            if (_trObj == null || _pos.Length <= _num)
+                return 0;
+            return _num + (1 - Vector2.Distance(_trObj.transform.position, _pos[_num].transform.position) * 0.01f);
         }
     }
 
@@ -53,6 +66,11 @@ public class WayPointMove
     public void SetSpeed(float speed)
     {
         _speed = speed;
+    }
+
+    public void SetNewTarget(Transform tr)
+    {
+        _pos[1] = tr;
     }
 
     public void AdvanceTime(float dtTime)
