@@ -132,3 +132,64 @@ public class StageEnemySpawnDefinitionContainer : ILoader<int, List<StageEnemySp
         return dict;
     }
 }
+
+[Serializable]
+public class StageDefinition
+{
+    public int key;
+    public int PartNum;
+    public int BoardKey;
+    public int MonsterSpawnKey;
+    public string TitleUnitImgStr;
+    public string DefenseMapPrefabName;
+}
+
+[Serializable]
+public class StageDefinitionContainer : ILoader<int, List<StageWrapperDefinition>>
+{
+    public List<StageDefinition> definitions = new List<StageDefinition>();
+    public Dictionary<int, List<StageWrapperDefinition>> MakeDict()
+    {
+        Dictionary<int, List<StageWrapperDefinition>> dict = new Dictionary<int, List<StageWrapperDefinition>>();
+        foreach (StageDefinition definition in definitions)
+        {
+            if (dict.ContainsKey(definition.key))
+            {
+                dict[definition.key].Add(new StageWrapperDefinition(definition));
+            }
+            else
+            {
+                dict.Add(definition.key, new List<StageWrapperDefinition>());
+                dict[definition.key].Add(new StageWrapperDefinition(definition));
+            }
+        }
+        return dict;
+    }
+}
+
+public class StageWrapperDefinition
+{
+    public int key;
+    public int partNum;
+    public int boardKey;
+    public int monsterSpawnKey;
+    public string titleUnitImgStr;
+    public string defenseMapPrefabName;
+    public List<StageEnemySpawnDefinition> enemyspawnDef = new List<StageEnemySpawnDefinition>();
+    public StageDetailBoardDefinition boardDef = new StageDetailBoardDefinition();
+    public StageWrapperDefinition()
+    {
+    }
+
+    public StageWrapperDefinition(StageDefinition def)
+    {
+        this.key = def.key;
+        partNum = def.PartNum;
+        boardKey = def.BoardKey;
+        monsterSpawnKey = def.MonsterSpawnKey;
+        titleUnitImgStr = def.TitleUnitImgStr;
+        defenseMapPrefabName = def.DefenseMapPrefabName;
+        enemyspawnDef = DefinitionManager.Instance.GetData<List<StageEnemySpawnDefinition>>(monsterSpawnKey);
+        boardDef = DefinitionManager.Instance.GetData<StageDetailBoardDefinition>(boardKey);
+    }
+}

@@ -13,7 +13,7 @@ public class LobbyElement : BaseElement
 }
 public class LobbyApplication : BaseApplication
 {
-    public InGameModel model;
+    public LobbyModel model;
     public LobbyView view;
     public LobbyController controller;
     public override void Init()

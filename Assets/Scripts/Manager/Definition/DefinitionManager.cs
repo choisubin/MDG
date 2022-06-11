@@ -51,6 +51,7 @@ public class DefinitionManager : MonoBehaviour
         LoadJson<StageDetailBoardDefinitionContainer,StageDetailBoardDefinition>("Stage/StageDetailBoardDefinition");
         LoadJson<UnitDefinitionContainer, UnitWrapperDefinition>("Unit/UnitDefinition");
         LoadJson<StageEnemySpawnDefinitionContainer, List<StageEnemySpawnDefinition>>("Stage/StageMonsterSpawnDefinition");
+        LoadJson<StageDefinitionContainer, List<StageWrapperDefinition>>("Stage/StageDefinition");
     }
 
     private void LoadJson<ContainerType, DefType>(string path) where ContainerType : ILoader<int, DefType>

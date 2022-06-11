@@ -56,6 +56,9 @@ TagManager:
   - name: Unit
     uniqueID: 1734027803
     locked: 0
+  - name: Attack
+    uniqueID: 1743638921
+    locked: 0
   - name: InGameEffect
     uniqueID: 3483458015
     locked: 0

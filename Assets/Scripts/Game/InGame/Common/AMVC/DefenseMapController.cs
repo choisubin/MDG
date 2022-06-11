@@ -206,7 +206,6 @@ public class DefenseMapController : BaseController
     private UnitBase _tempUnitBase;
     private void SpawnEnemy(int enemyKey)
     {
-        Debug.LogError("SpawnEnemy");
         _unitDef = _unitDefDic[enemyKey];
         _tempUnitObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.Unit, _unitDef.PrefabsName, this.transform);
         _tempUnitBase = _tempUnitObj.GetComponent<UnitBase>();

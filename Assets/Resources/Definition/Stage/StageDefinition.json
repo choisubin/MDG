@@ -1,0 +1,44 @@
+{
+    "definitions": [
+        {
+            "key": 1,
+            "PartNum": 1,
+            "BoardKey": 2,
+            "MonsterSpawnKey": 1,
+            "TitleUnitImgStr": "Unit1",
+            "DefenseMapPrefabName": "Map1"
+        },
+        {
+            "key": 1,
+            "PartNum": 2,
+            "BoardKey": 2,
+            "MonsterSpawnKey": 2,
+            "TitleUnitImgStr": "Unit2",
+            "DefenseMapPrefabName": "Map1"
+        },
+        {
+            "key": 1,
+            "PartNum": 3,
+            "BoardKey": 2,
+            "MonsterSpawnKey": 2,
+            "TitleUnitImgStr": "Unit3",
+            "DefenseMapPrefabName": "Map1"
+        },
+        {
+            "key": 2,
+            "PartNum": 1,
+            "BoardKey": 2,
+            "MonsterSpawnKey": 2,
+            "TitleUnitImgStr": "Unit4",
+            "DefenseMapPrefabName": "Map1"
+        },
+        {
+            "key": 2,
+            "PartNum": 2,
+            "BoardKey": 2,
+            "MonsterSpawnKey": 2,
+            "TitleUnitImgStr": "Unit5",
+            "DefenseMapPrefabName": "Map1"
+        }
+    ]
+}

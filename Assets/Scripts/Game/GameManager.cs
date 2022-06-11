@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour, System.IDisposable
         _app.Add(EGameState.INGAME, go.GetComponent<InGameApplication>());
         go.SetActive(false);
 
-        go = PoolManager.Instance.GrabPrefabs(EPrefabsType.GameStateHandler, "LobbyApplication", this.transform);
-        _app.Add(EGameState.LOBBY, go.GetComponent<LobbyApplication>());
-        go.SetActive(false);
+        //go = PoolManager.Instance.GrabPrefabs(EPrefabsType.GameStateHandler, "LobbyApplication", this.transform);
+        //_app.Add(EGameState.LOBBY, go.GetComponent<LobbyApplication>());
+        //go.SetActive(false);
     }
 
     private void InitHandlers()
