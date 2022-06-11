@@ -29,9 +29,15 @@ public class UnitBase : MonoBehaviour
     {
         set
         {
-            if(value >= MaxHp)
+            if(value < 0)
             {
-                CurrentHP = MaxHp;
+                _currentHp = 0;
+            }
+            else
+            {
+                _currentHp = Mathf.Min(value ,MaxHp);
+                float scale = Mathf.Max(_currentHp / MaxHp,0.1f);
+                transform.localScale = new Vector2(scale, scale);
             }
         }
         get
@@ -53,20 +59,23 @@ public class UnitBase : MonoBehaviour
     public void Set(UnitWrapperDefinition def,Transform[] waypoints)
     {
         _unitDef = def;
-        _currentHp = MaxHp;
+        CurrentHP = MaxHp;
         _isAlive = true;
         _moveComponent.Set(this.transform, waypoints, def.Speed);
-        //Debug.LogError(string.Format("{0} {1} {2} {3} {4} {5}", def.EUnitAttackEffect, def.EUnitAttackType, def.EUnitTargetingType, def.Speed, def.BaseAtk, def.BaseHp));
     }
 
     public void AdvanceTime(float dt_sec)
     {
         _moveComponent.AdvanceTime(dt_sec);
-        if(_moveComponent.IsArrive)
+        if(_moveComponent.IsArrive || CurrentHP == 0)
         {
-            PoolManager.Instance.DespawnObject(EPrefabsType.Unit, this.gameObject);
-            _isAlive = false;
+            DespawnUnit();
         }
     }
 
+    private void DespawnUnit()
+    {
+        _isAlive = false;
+        PoolManager.Instance.DespawnObject(EPrefabsType.Unit, this.gameObject);
+    }
 }

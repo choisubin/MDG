@@ -7,7 +7,7 @@ public class WayPointMove
     private Transform[] _pos;
     private Transform _trObj;
 
-    private float _speed = 5f;
+    public float _speed;
     private int _num = 0;
 
     private bool _isArrive = false;

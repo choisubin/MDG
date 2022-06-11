@@ -46,7 +46,7 @@
             "EUnitAttackType": "SingleAtk",
             "UnitAttackNum": 1,
             "Speed": 1,
-            "BaseHp": 30,
+            "BaseHp": 100,
             "BaseAtk": 10,
             "BaseAttackSpeed": 5,
             "PrefabsName": "Unit_Basic_4",

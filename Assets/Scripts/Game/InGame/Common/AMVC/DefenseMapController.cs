@@ -61,14 +61,27 @@ public class DefenseMapController : BaseController
     {
         _currentTime += dt_sec;
 
-        //Unit관련
-        RemoveEnemyToMap();
-        SpawnScheduling(_currentTime);
-        AdvanceUnits(dt_sec);
+        ////Unit관련
+        //RemoveEnemyToMap();
+        //SpawnScheduling(_currentTime);
+        //AdvanceUnits(dt_sec);
+
+        ////Attack관련
+        //RemoveAttackToMap();
+        //AdvanceAttack(dt_sec);
 
         //Attack관련
-        RemoveAttackToMap();
+        SpawnScheduling(_currentTime);
+
         AdvanceAttack(dt_sec);
+        AdvanceUnits(dt_sec);
+
+        RemoveAttackToMap();
+        RemoveEnemyToMap();
+
+
+        //Unit관련
+
     }
 
     private AttackWrapper _tempAttackWrapper;
@@ -193,6 +206,7 @@ public class DefenseMapController : BaseController
     private UnitBase _tempUnitBase;
     private void SpawnEnemy(int enemyKey)
     {
+        Debug.LogError("SpawnEnemy");
         _unitDef = _unitDefDic[enemyKey];
         _tempUnitObj = PoolManager.Instance.GrabPrefabs(EPrefabsType.Unit, _unitDef.PrefabsName, this.transform);
         _tempUnitBase = _tempUnitObj.GetComponent<UnitBase>();
@@ -258,7 +272,7 @@ public class DefenseMapController : BaseController
                 }
                 else //남은 적이 없다면 그냥 공격 캔슬
                 {
-                    attack.AttackCancle();
+                    attack.DespawnAttack();
                 }
             }
         }

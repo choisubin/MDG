@@ -44,9 +44,9 @@ public class AttackBase : MonoBehaviour
         _moveComponent.AdvanceTime(dt_sec);
         if (_moveComponent.IsArrive) //타겟에 무사히 도착 했을 때
         {
+            _attackWrapper.AttackUnit();
             SpawnExplosionEffect();
-            _isAlive = false;
-            PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
+            DespawnAttack();
 
         }
         //else if(!_moveComponent.IsTargetEnable) //타겟에 도착하지 않았는데 타겟 오브젝트가 비활성화 되었을 u
@@ -61,7 +61,7 @@ public class AttackBase : MonoBehaviour
         _moveComponent.SetNewTarget(tr);
     }
 
-    public void AttackCancle() //공격 취소
+    public void DespawnAttack() //공격 취소
     {
         _isAlive = false;
         PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, this.gameObject);
@@ -75,5 +75,4 @@ public class AttackBase : MonoBehaviour
         explosionObj.transform.position = this.transform.position;
         explosionObj.SetActive(true);
     }
-
 }

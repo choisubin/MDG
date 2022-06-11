@@ -296,7 +296,7 @@ public class Block
     {
         Hashtable sendData = new Hashtable();
         sendData.Add(EDataParamKey.AttackWrapper,
-            new AttackWrapper(m_UnitDef, blockObj.transform, null));
+            new AttackWrapper(m_UnitDef, blockObj.transform));
         NotificationCenter.Instance.PostNotification(ENotiMessage.OnMatchBlock, sendData);
     }
 }
