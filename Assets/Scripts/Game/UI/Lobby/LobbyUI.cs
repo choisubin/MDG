@@ -18,7 +18,6 @@ public class LobbyUI : MonoBehaviour
     {
         Init();
         _stagePopupController.Init();
-        _stagePopupController.Set();
     }
 
     // Update is called once per frame
@@ -49,7 +48,11 @@ public class LobbyUI : MonoBehaviour
         _middleContents[(int)contents].SetActive(true);
     }
 
-
+    public void OnClick_SinglePlay()
+    {
+        _stagePopupController.Set();
+        _stagePopupController.gameObject.SetActive(true);
+    }
 }
 [SerializeField]
 public enum EMiddleContents

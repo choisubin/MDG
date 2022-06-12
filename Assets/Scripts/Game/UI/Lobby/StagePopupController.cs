@@ -23,7 +23,6 @@ public class StagePopupController : BaseController
         }
         set
         {
-            Debug.LogError(_stageDefinition.Count);
             if(value > 0 && value <= _stageDefinition.Count)
             {
                 _curStageNum = value;
@@ -87,5 +86,9 @@ public class StagePopupController : BaseController
     {
         CurPartNum--;
     }
-
+    public void OnClick_Exit()
+    {
+        Dispose();
+        gameObject.SetActive(false);
+    }
 }
