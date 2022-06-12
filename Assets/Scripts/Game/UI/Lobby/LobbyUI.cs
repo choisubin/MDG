@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class LobbyUI : MonoBehaviour
 {
     [SerializeField] private RectTransform _bottomToggleGroup;
@@ -13,11 +13,19 @@ public class LobbyUI : MonoBehaviour
 
     [SerializeField] private StagePopupController _stagePopupController;
 
+    [SerializeField] private TextMeshProUGUI _userNickName;
+
     // Start is called before the first frame update
     void Start()
     {
         Init();
         _stagePopupController.Init();
+        _userNickName.text = FirebaseManager.Instance.dic["username"] as string;
+        foreach (var a in FirebaseManager.Instance.dic)
+        {
+            Debug.LogError(a.Key);
+            Debug.LogError(a.Value);
+        }
     }
 
     // Update is called once per frame
@@ -29,6 +37,8 @@ public class LobbyUI : MonoBehaviour
     const float rectNum = 0.46f;
     public void Init()
     {
+
+        //_userNickName.text = (string)FirebaseManager.Instance.dic["username"];
         _bottomToggleGroup.sizeDelta = new Vector2(Mathf.Min(_anchor.rect.width, 1040), 320);
         _infoImgTr.sizeDelta = new Vector2(_infoPanelTr.rect.width * rectNum, _infoPanelTr.rect.width * rectNum);
         _infoTextTr.sizeDelta = new Vector2(_infoPanelTr.rect.width - _infoImgTr.rect.width-10f, _infoTextTr.rect.height);

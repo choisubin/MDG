@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "178736057479",
+    "firebase_url": "https://matchdefensegame-default-rtdb.firebaseio.com",
     "project_id": "matchdefensegame",
     "storage_bucket": "matchdefensegame.appspot.com"
   },
