@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "178736057479",
+    "project_id": "matchdefensegame",
+    "storage_bucket": "matchdefensegame.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178736057479:android:1f922c9e851c1c5f0dfc22",
+        "android_client_info": {
+          "package_name": "com.chsbin99.MGDProject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178736057479-e8lko7luhimpm4k4ji55qhi4iq0m07so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx53tagl0YPrEjL4EACCOLsswmbP-ZYR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178736057479-e8lko7luhimpm4k4ji55qhi4iq0m07so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

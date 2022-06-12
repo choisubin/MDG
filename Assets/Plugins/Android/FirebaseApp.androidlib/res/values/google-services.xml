@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">178736057479</string>
+  <string name="google_storage_bucket" translatable="false">matchdefensegame.appspot.com</string>
+  <string name="project_id" translatable="false">matchdefensegame</string>
+  <string name="google_api_key" translatable="false">AIzaSyBx53tagl0YPrEjL4EACCOLsswmbP-ZYR8</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBx53tagl0YPrEjL4EACCOLsswmbP-ZYR8</string>
+  <string name="google_app_id" translatable="false">1:178736057479:android:1f922c9e851c1c5f0dfc22</string>
+  <string name="default_web_client_id" translatable="false">178736057479-e8lko7luhimpm4k4ji55qhi4iq0m07so.apps.googleusercontent.com</string>
+</resources>
