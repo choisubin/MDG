@@ -15,34 +15,25 @@ public class LobbyUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _userNickName;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Init();
-        _stagePopupController.Init();
-        _userNickName.text = FirebaseManager.Instance.dic["username"] as string;
-        foreach (var a in FirebaseManager.Instance.dic)
-        {
-            Debug.LogError(a.Key);
-            Debug.LogError(a.Value);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Init();
-    }
+    [SerializeField] private Inventory _inventory;
 
     const float rectNum = 0.46f;
-    public void Init()
-    {
 
-        //_userNickName.text = (string)FirebaseManager.Instance.dic["username"];
-        _bottomToggleGroup.sizeDelta = new Vector2(Mathf.Min(_anchor.rect.width, 1040), 320);
-        _infoImgTr.sizeDelta = new Vector2(_infoPanelTr.rect.width * rectNum, _infoPanelTr.rect.width * rectNum);
-        _infoTextTr.sizeDelta = new Vector2(_infoPanelTr.rect.width - _infoImgTr.rect.width-10f, _infoTextTr.rect.height);
+    public void Set()
+    {
+        this.gameObject.SetActive(true);
+        _stagePopupController.Init();
+        SetUiSize();
+        _userNickName.text = FirebaseManager.Instance.dic["username"] as string;
     }
+
+    private void SetUiSize()
+    {
+        _bottomToggleGroup.sizeDelta = new Vector2(Mathf.Min(_anchor.rect.width, 1040), 320);
+        //_infoImgTr.sizeDelta = new Vector2(_infoPanelTr.rect.width * rectNum, _infoPanelTr.rect.width * rectNum);
+        //_infoTextTr.sizeDelta = new Vector2(_infoPanelTr.rect.width - _infoImgTr.rect.width - 10f, _infoTextTr.rect.height);
+    }
+
 
     private void AllMiddleContentsOff()
     {
@@ -56,12 +47,21 @@ public class LobbyUI : MonoBehaviour
     {
         AllMiddleContentsOff();
         _middleContents[(int)contents].SetActive(true);
+        if(contents==((int)EMiddleContents.Inventory))
+        {
+            _inventory.Set();
+        }
     }
 
     public void OnClick_SinglePlay()
     {
         _stagePopupController.Set();
         _stagePopupController.gameObject.SetActive(true);
+    }
+
+    public void Dispose()
+    {
+        gameObject.SetActive(false);
     }
 }
 [SerializeField]

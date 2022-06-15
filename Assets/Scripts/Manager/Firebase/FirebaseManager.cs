@@ -6,6 +6,7 @@ using Firebase.Unity;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Firebase.Auth;
+using System;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -49,6 +50,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
     public IDictionary<string, object> dic { get; private set; }
+    private Dictionary<object, IDictionary> _userUnitDataDic = new Dictionary<object, IDictionary>();
+    public Dictionary<int, UserUnitData> userUnitDataDic = new Dictionary<int, UserUnitData>();
+
+    public UserUnitData[] CurrentEquipUnit = new UserUnitData[5];
 
     private void Awake()
     {
@@ -93,16 +98,47 @@ public class FirebaseManager : MonoBehaviour
                });
     }
 
+    [Serializable]
     public class User // 사용자 클래스 생성
     {
-        public string user_avt;
         public string username;
+        public int coin;
+        public int crystal;
+        public List<UserUnitData> unitData;
         public User(string username)
         {
-            this.user_avt = "default";
             this.username = username;
+            coin = 0;
+            crystal = 0;
+            unitData = new List<UserUnitData>();
+            unitData.Add(new UserUnitData(1, 1,1));
+            unitData.Add(new UserUnitData(2, 1,2));
+            unitData.Add(new UserUnitData(3, 1,3));
+            unitData.Add(new UserUnitData(4, 1, 4));
+            unitData.Add(new UserUnitData(5, 1,5));
+            unitData.Add(new UserUnitData(6, 1, 0));
+            unitData.Add(new UserUnitData(7, 1, 0));
+            unitData.Add(new UserUnitData(8, 1, 0));
         }
     }
+
+    [Serializable]
+    public class UserUnitData
+    {
+        public int key;
+        public int level;
+        public int equipSlot;
+        public UserUnitData(int key, int level,int equipSlot)
+        {
+            this.key = key;
+            this.level = level;
+            this.equipSlot = equipSlot;
+        }
+        public UserUnitData()
+        { }
+
+    }
+
 
     void writeNewUser(string userid,string username) // 가입한 회원 고유 번호에 대한 사용자 기본값 설정
     {
@@ -129,6 +165,39 @@ public class FirebaseManager : MonoBehaviour
                 }
             }
         });
-    }
 
+        DatabaseReference unitdata = FirebaseDatabase.DefaultInstance.GetReference(user.UserId);
+        unitdata.Child("unitData").GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                foreach (DataSnapshot data in snapshot.Children)
+                {
+                    IDictionary unitInfo = (IDictionary)data.Value;
+                    _userUnitDataDic.Add(unitInfo["key"], unitInfo);
+                    //Debug.LogErrorFormat("{0} / {1} / {2}", unitInfo["key"], unitInfo["level"], unitInfo["equipSlot"]);
+                }
+            }
+        });
+    }
+    public void LoadDataToDatabase()
+    {
+        UserUnitData[] equipDatas = new UserUnitData[5];
+        foreach(var data in _userUnitDataDic)
+        {
+            IDictionary d = (IDictionary)data.Value;
+            int key = Convert.ToInt32(d["key"]);
+            int level = Convert.ToInt32(d["level"]);
+            int equipSlot = Convert.ToInt32(d["equipSlot"]);
+            UserUnitData unitdata = new UserUnitData(key, level, equipSlot);
+            userUnitDataDic.Add(key, unitdata);
+
+            if (equipSlot > 0 && equipSlot < 6)
+            {
+                equipDatas[equipSlot - 1] = unitdata;
+            }
+        }
+        CurrentEquipUnit = equipDatas;
+    }
 }

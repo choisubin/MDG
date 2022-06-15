@@ -46,6 +46,8 @@ public class UnitWrapperDefinition
     public float BaseAttackSpeed;
     public string PrefabsName;
     public string AttackPrefabsName;
+    public string UnitImageStr;
+    public int RewardCoin;
 
     public UnitWrapperDefinition()
     {
@@ -64,6 +66,8 @@ public class UnitWrapperDefinition
         BaseAttackSpeed = def.BaseAttackSpeed;
         PrefabsName = def.PrefabsName;
         AttackPrefabsName = def.AttackPrefabsName;
+        UnitImageStr = def.UnitImageStr;
+        RewardCoin = def.RewardCoin;
     }
 }
 
@@ -81,6 +85,8 @@ public class UnitDefinition
     public float BaseAttackSpeed;
     public string PrefabsName;
     public string AttackPrefabsName;
+    public string UnitImageStr;
+    public int RewardCoin;
 }
 [Serializable]
 public class UnitDefinitionContainer : ILoader<int, UnitWrapperDefinition>

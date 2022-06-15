@@ -32,6 +32,9 @@ public class UnitBase : MonoBehaviour
             if(value < 0)
             {
                 _currentHp = 0;
+                Hashtable sendData = new Hashtable();
+                sendData.Add(EDataParamKey.Integer, _unitDef.RewardCoin);
+                NotificationCenter.Instance.PostNotification(ENotiMessage.OnKillEnemy, sendData);
             }
             else
             {

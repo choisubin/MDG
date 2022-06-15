@@ -2,34 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameController : BaseController
+public class InGameController : IngameElement
 {
-    private InGameApplication _app = new InGameApplication();
-    public override void Init()
+    public void Init()
     {
+        NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnKillEnemy);
     }
 
-    public void Init(InGameApplication app, int stageNum, int subStageNum)
+    public void Set()
     {
-        //_app = app;
-        //app.model.StageNum = stageNum;
-        //app.model.SubStageNum = subStageNum;
-        //app.model.MapKey = 0;
-
-        //app.view.PuzzleMap.Init(app.model.MapDef);
+        app.view.SetStageInfoText(app.model.StageNum, app.model.PartNum);
     }
 
-    public override void AdvanceTime(float dt_sec)
+    public void AdvanceTime(float dt_sec)
     {
-        //_app.model.time += dt_sec;
-        //_app.view.PuzzleMap.AdvanceTime(dt_sec);
+        app.model.GameTime += dt_sec;
+        app.view.UpdateText((int)app.model.GameTime, app.model.Money);
     }
-
-    public override void Set()
+    public void OnNotification(Notification noti)
     {
+        switch(noti.msg)
+        {
+            case ENotiMessage.OnKillEnemy:
+                app.model.Money += (int)noti.data[EDataParamKey.Integer];
+                break;
+        }
     }
-
-    public override void Dispose()
+    public void Dispose()
     {
     }
 }

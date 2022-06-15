@@ -162,6 +162,8 @@ public class PoolManager : MonoBehaviour
                 return "Prefabs/Game/Unit/";
             case EPrefabsType.InGameAttack:
                 return "Prefabs/Game/InGame/Attack/";
+            case EPrefabsType.UI:
+                return "prefabs/Game/UI/";
 
         }
         return "Prefabs/";
@@ -171,6 +173,9 @@ public enum EPrefabsType
 {
     //==================StateHandler==================//
     GameStateHandler,
+
+    //UI
+    UI,
 
     //==================Ingame==================//
     //MatchBoard

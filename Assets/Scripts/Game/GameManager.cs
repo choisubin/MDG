@@ -6,18 +6,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour, System.IDisposable
 {
     // Start is called before the first frame update
-    [SerializeField]
-    private Dictionary<EGameState, BaseApplication> _app = new Dictionary<EGameState, BaseApplication>();
+    public InGameApplication inGameApplication;
+    public LobbyApplication lobbyApplication;
     void Awake()
     {
         Screen.SetResolution(1080, 1920, true);
     }
     void Start()
     {
-        InitStateApplication();
         InitHandlers();
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.ChangeSceneState);
-        ChangeState(EGameState.INGAME);
+        ChangeState(EGameState.LOBBY);
 
     }
 
@@ -33,41 +32,41 @@ public class GameManager : MonoBehaviour, System.IDisposable
 
     public void Dispose()
     {
+        NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.ChangeSceneState);
         GetStateHandler(_currentState).Dispose();
     }
 
     public void OnNotification(Notification noti)
     {
         EGameState state = (EGameState)noti.data[EDataParamKey.Integer];
-        ChangeState(state);
+        switch(state)
+        {
+            case EGameState.INGAME:
+                int[] stageInfo = (int[])noti.data[EDataParamKey.IntegerArr];
+                inGameApplication.SetStageNum(stageInfo[0], stageInfo[1]);
+                ChangeState(state);
+                break;
+            default:
+                ChangeState(state);
+                break;
+        }
     }
 
     #region State Handlers
     private Dictionary<EGameState, IGameBasicModule> _handlers = new Dictionary<EGameState, IGameBasicModule>();
     private EGameState _currentState = EGameState.UNKNOWN;
 
-    private void InitStateApplication()
-    {
-        GameObject go = PoolManager.Instance.GrabPrefabs(EPrefabsType.GameStateHandler, "InGameApplication", this.transform);
-        _app.Add(EGameState.INGAME, go.GetComponent<InGameApplication>());
-        go.SetActive(false);
-
-        //go = PoolManager.Instance.GrabPrefabs(EPrefabsType.GameStateHandler, "LobbyApplication", this.transform);
-        //_app.Add(EGameState.LOBBY, go.GetComponent<LobbyApplication>());
-        //go.SetActive(false);
-    }
-
     private void InitHandlers()
     {
         _handlers.Clear();
-        foreach (KeyValuePair<EGameState, BaseApplication> item in _app)
-        {
-            _handlers.Add(item.Key, item.Value);
-        }
 
+        _handlers.Add(EGameState.LOADING, new LoadingApplication());
+        _handlers.Add(EGameState.INGAME, inGameApplication);
+        _handlers.Add(EGameState.LOBBY, lobbyApplication);
         foreach (EGameState state in _handlers.Keys)
         {
-            _handlers[state].Init();
+            _handlers[state].Init(this.gameObject);
+            _handlers[state].SetActive(false);
         }
     }
 
@@ -102,11 +101,39 @@ public class GameManager : MonoBehaviour, System.IDisposable
         return null;
     }
     #endregion
+    public class LoadingApplication : IGameBasicModule
+    {
+        GameManager gm;
+        public void Init(GameObject gm)
+        {
+            this.gm = gm.GetComponent<GameManager>();
+        }
 
+        public void Set()
+        {
+        }
+        float _currentTime = 0;
+        public void AdvanceTime(float dt_sec)
+        {
+            _currentTime += dt_sec;
+            if (_currentTime > 2f)
+            {
+                gm.ChangeState(EGameState.LOBBY);
+            }
+        }
+
+        public void Dispose()
+        {
+        }
+
+        public void SetActive(bool flag)
+        {
+        }
+    }
 }
 public interface IGameBasicModule
 {
-    void Init();
+    void Init(GameObject gm);
     void Set();
     void AdvanceTime(float dt_sec);
     void Dispose();
@@ -116,6 +143,8 @@ public interface IGameBasicModule
 public enum EGameState
 {
     UNKNOWN,
+    LOADING,
     INGAME,
     LOBBY,
 }
+

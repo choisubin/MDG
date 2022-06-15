@@ -91,4 +91,14 @@ public class StagePopupController : BaseController
         Dispose();
         gameObject.SetActive(false);
     }
+
+    public void OnClick_StartGame()
+    {
+        Hashtable sendData=new Hashtable();
+        sendData.Add(EDataParamKey.Integer, EGameState.INGAME);
+
+        int[] arr = { _curStageNum, _curPartNum };
+        sendData.Add(EDataParamKey.IntegerArr, arr);
+        NotificationCenter.Instance.PostNotification(ENotiMessage.ChangeSceneState, sendData);
+    }
 }

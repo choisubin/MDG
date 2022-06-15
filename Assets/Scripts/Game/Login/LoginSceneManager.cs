@@ -26,6 +26,7 @@ public class LoginSceneManager : MonoBehaviour
             if (_curTime > 2f)
             {
                 FirebaseManager.Instance.LoadDatabase();
+                FirebaseManager.Instance.LoadDataToDatabase();
                 SceneManager.LoadScene("Game", LoadSceneMode.Single);
             }
         }    

@@ -11,29 +11,35 @@ public class LobbyElement : BaseElement
         }
     }
 }
-public class LobbyApplication : BaseApplication
+public class LobbyApplication : MonoBehaviour, IGameBasicModule
 {
     public LobbyModel model;
     public LobbyView view;
     public LobbyController controller;
-    public override void Init()
+    public void Init(GameObject gm)
     {
         controller.Init();
     }
 
-    public override void Set()
+    public void Set()
     {
+        Debug.LogError("LobbyApplicationSet");
         //gameObject.SetActive(true);
         controller.Set();
     }
-    public override void AdvanceTime(float dt_sec)
+    public void AdvanceTime(float dt_sec)
     {
         controller.AdvanceTime(dt_sec);
     }
 
-    public override void Dispose()
+    public void Dispose()
     {
         //gameObject.SetActive(false);
         controller.Dispose();
+    }
+
+    public void SetActive(bool flag)
+    {
+        gameObject.SetActive(flag);
     }
 }

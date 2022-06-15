@@ -1,19 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 public class BlockBehaviour : MonoBehaviour
 {
     Block m_Block;
     SpriteRenderer m_SpriteRenderer;
-    [SerializeField] BlockConfig m_BlockConfig;
+    //[SerializeField] BlockSetting m_BlockConfig = new BlockSetting();
+    #region blocksetting
 
-    void Start()
+    private Dictionary<int, UnitWrapperDefinition> _unitDefDic = new Dictionary<int, UnitWrapperDefinition>();
+    public Dictionary<int, UnitWrapperDefinition> UnitDefDic
     {
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
-
-        UpdateView(false);
+        get
+        {
+            return _unitDefDic;
+        }
     }
+    public float[] dropSpeed = { 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f };
+    private Sprite[] _basicBlockSprites;
+    public Sprite[] basicBlockSprites
+    {
+        get
+        {
+            return _basicBlockSprites;
+        }
+    }
+    private Color[] _blockColors;
+    public Color[] blockColors
+    {
+        get
+        {
+            return _blockColors;
+        }
+    }
+
+    public GameObject GetExplosionObject(BlockQuestType questType)
+    {
+        switch (questType)
+        {
+            case BlockQuestType.CLEAR_SIMPLE:
+                return PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameMatchEffect, "FX_BLOCK_EXPLOSION_NORMAL");
+            default:
+                return PoolManager.Instance.GrabPrefabs(EPrefabsType.InGameMatchEffect, "FX_BLOCK_EXPLOSION_NORMAL"); ;
+        }
+    }
+
+    public Color GetBlockColor(int unitKey)
+    {
+        return blockColors[(int)unitKey];
+    }
+    #endregion
+    //void Start()
+    //{
+    //    m_SpriteRenderer = GetComponent<SpriteRenderer>();
+
+    //    UpdateView(false);
+    //}
     public void Set()
     {
+        _unitDefDic = DefinitionManager.Instance.GetDatas<UnitWrapperDefinition>();
+        _basicBlockSprites = new Sprite[_unitDefDic.Count + 1];
+        _blockColors = new Color[_unitDefDic.Count + 1];
+        foreach (var key in _unitDefDic.Keys)
+        {
+            basicBlockSprites[key] = Resources.Load<Sprite>("Sprites/Unit/" + _unitDefDic[key].UnitImageStr);
+            blockColors[key] = new Color(1f, 1f, 1f);
+        }
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
 
         UpdateView(false);
@@ -38,7 +91,7 @@ public class BlockBehaviour : MonoBehaviour
         }
         else if (m_Block.type == BlockType.BASIC)
         {
-            m_SpriteRenderer.sprite = m_BlockConfig.basicBlockSprites[(int)m_Block.unitKey];
+            m_SpriteRenderer.sprite = basicBlockSprites[(int)m_Block.unitKey];
         }
     }
 
@@ -59,9 +112,9 @@ public class BlockBehaviour : MonoBehaviour
         yield return Action2D.Scale(transform, Constants.BLOCK_DESTROY_SCALE, 4f);
 
         //2. 폭파시키는 효과 연출 : 블럭 자체의 Clear 효과를 연출한다 (모든 블럭 동일)
-        GameObject explosionObj = m_BlockConfig.GetExplosionObject(BlockQuestType.CLEAR_SIMPLE);
+        GameObject explosionObj = GetExplosionObject(BlockQuestType.CLEAR_SIMPLE);
         ParticleSystem.MainModule newModule = explosionObj.GetComponent<ParticleSystem>().main;
-        newModule.startColor = m_BlockConfig.GetBlockColor(m_Block.unitKey);
+        newModule.startColor = GetBlockColor(m_Block.unitKey);
 
         explosionObj.transform.position = this.transform.position;
         explosionObj.SetActive(true);

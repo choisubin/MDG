@@ -9,9 +9,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_1",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit1",
+            "RewardCoin": 50
         },
         {
             "key": 2,
@@ -22,9 +24,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_2",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit2",
+            "RewardCoin": 50
         },
         {
             "key": 3,
@@ -35,9 +39,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_3",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit3",
+            "RewardCoin": 50
         },
         {
             "key": 4,
@@ -46,11 +52,13 @@
             "EUnitAttackType": "SingleAtk",
             "UnitAttackNum": 1,
             "Speed": 1,
-            "BaseHp": 100,
+            "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_4",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit4",
+            "RewardCoin": 50
         },
         {
             "key": 5,
@@ -61,9 +69,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_5",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit5",
+            "RewardCoin": 50
         },
         {
             "key": 6,
@@ -74,9 +84,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_6",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit6",
+            "RewardCoin": 50
         },
         {
             "key": 7,
@@ -87,9 +99,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_7",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit7",
+            "RewardCoin": 50
         },
         {
             "key": 8,
@@ -100,9 +114,11 @@
             "Speed": 1,
             "BaseHp": 30,
             "BaseAtk": 10,
-            "BaseAttackSpeed": 5,
+            "BaseAttackSpeed": 1.1,
             "PrefabsName": "Unit_Basic_8",
-            "AttackPrefabsName": "AttackBall"
+            "AttackPrefabsName": "AttackBall",
+            "UnitImageStr": "Unit8",
+            "RewardCoin": 50
         }
     ]
 } 

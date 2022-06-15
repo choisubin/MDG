@@ -6,12 +6,10 @@ public class LobbyController : LobbyElement
 {
     public void Init()
     {
-
     }
-
-
     public void Set()
     {
+        app.view.LobbyUI.Set();
     }
     public void AdvanceTime(float dt_sec)
     {
@@ -20,5 +18,6 @@ public class LobbyController : LobbyElement
 
     public void Dispose()
     {
+        app.view.LobbyUI.Dispose();
     }
 }

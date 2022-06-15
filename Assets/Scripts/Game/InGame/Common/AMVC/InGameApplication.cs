@@ -1,22 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class InGameApplication : BaseApplication
+public class IngameElement : BaseElement
+{
+    public InGameApplication app
+    {
+        get
+        {
+            return GameObject.FindObjectOfType<InGameApplication>();
+        }
+    }
+}
+public class InGameApplication : MonoBehaviour, IGameBasicModule
 {
     public InGameModel model;
     public InGameView view;
     //public InGameController controller;
-    public BaseController[] controllers;
+    public InGameController inGameController;
+    public DefenseMapController defenseMapController;
+    public MatchBoardController matchBoardController;
 
-    public override void Init()
+    public void Init(GameObject gm)
     {
         //controller.Init(this, 0, 0);
-
-        foreach(var c in controllers)
-        {
-            c.Init();
-        }
+        inGameController.Init();
+        defenseMapController.Init();
+        matchBoardController.Init();
     }
 
     public void Init(int stageNum, int subStage)
@@ -24,36 +33,42 @@ public class InGameApplication : BaseApplication
         //Init();
     }
 
-    public override void Set()
+    public void Set()
     {
         //gameObject.SetActive(true);
         //controller.Set();
 
-        foreach (var c in controllers)
-        {
-            c.Set();
-        }
+        inGameController.Set();
+        defenseMapController.Set();
+        matchBoardController.Set();
     }
 
-    public override void AdvanceTime(float dt_sec)
+    public void AdvanceTime(float dt_sec)
     {
         //controller.AdvanceTime(dt_sec);
 
-        foreach (var c in controllers)
-        {
-            c.AdvanceTime(dt_sec);
-        }
+        inGameController.AdvanceTime(dt_sec);
+        defenseMapController.AdvanceTime(dt_sec);
+        matchBoardController.AdvanceTime(dt_sec);
     }
 
-    public override void Dispose()
+    public void Dispose()
     {
         //gameObject.SetActive(false);
         //controller.Dispose();
 
-        foreach (var c in controllers)
-        {
-            c.Dispose();
-        }
+        inGameController.Dispose();
+        defenseMapController.Dispose();
+        matchBoardController.Dispose();
     }
 
+    public void SetActive(bool flag)
+    {
+        gameObject.SetActive(flag);
+    }
+
+    public void SetStageNum(int stage,int part)
+    {
+        model.SetStageInfo(stage, part);
+    }
 }

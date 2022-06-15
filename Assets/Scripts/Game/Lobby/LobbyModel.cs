@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LobbyModel : BaseElement
+public class LobbyModel : LobbyElement
 {
    
 }

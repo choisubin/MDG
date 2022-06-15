@@ -7,12 +7,16 @@ public static class BlockFactory
     public static Block SpawnBlock(BlockType blockType)
     {
         Block block = new Block(blockType);
-
         //Set Breed
         if (blockType == BlockType.BASIC)
-            block.unitKey = UnityEngine.Random.Range(1, 5);
+        {
+            int randomNum = UnityEngine.Random.Range(0, 5);
+            block.unitKey = FirebaseManager.Instance.CurrentEquipUnit[randomNum].key;
+        }
         else if (blockType == BlockType.EMPTY)
+        {
             block.unitKey = 0;
+        }
 
         return block;
     }

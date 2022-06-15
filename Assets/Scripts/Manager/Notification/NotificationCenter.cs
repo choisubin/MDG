@@ -176,7 +176,8 @@ public enum ENotiMessage
 
     //2001~3000
     //InGame Notification
-    OnMatchBlock = 2001,    
+    OnMatchBlock = 2001,
+    OnKillEnemy,
 }
 
 public enum EDataParamKey
@@ -185,6 +186,7 @@ public enum EDataParamKey
     Integer, //일반 int 변수형 낱개로 보낼 때
     Transform, //transform 낱개로 보낼 때
 
+    IntegerArr,
     //사용자 정의 클래스
     AttackWrapper,
 }

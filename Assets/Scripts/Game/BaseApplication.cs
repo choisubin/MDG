@@ -26,7 +26,7 @@ public abstract class BaseApplication : MonoBehaviour, IGameBasicModule
     {
         this.gameObject.SetActive(flag);
     }
-    public abstract void Init();
+    public abstract void Init(GameObject gm);
     public abstract void AdvanceTime(float dt_sec);
     public abstract void Set();
     public abstract void Dispose();

@@ -8,10 +8,25 @@ using System.Collections.Generic;
 */
 public class BlockActionBehaviour : MonoBehaviour
 {
-    [SerializeField] BlockConfig m_BlockConfig;
+    //[SerializeField] BlockSetting m_BlockConfig = new BlockSetting();
     public bool isMoving { get; set; }
 
     Queue<Vector3> m_MovementQueue = new Queue<Vector3>();    //x, y, z = acceleration
+
+    private Dictionary<int, UnitWrapperDefinition> _unitDefDic = new Dictionary<int, UnitWrapperDefinition>();
+    public Dictionary<int, UnitWrapperDefinition> UnitDefDic
+    {
+        get
+        {
+            if (_unitDefDic == null)
+            {
+                _unitDefDic = DefinitionManager.Instance.GetDatas<UnitWrapperDefinition>();
+            }
+            return _unitDefDic;
+        }
+    }
+    public float[] dropSpeed = { 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f };
+    
 
     /*
      * 아래쪽으로 주어진 거리만큼 이동한다.
@@ -36,7 +51,7 @@ public class BlockActionBehaviour : MonoBehaviour
             Vector2 vtDestination = m_MovementQueue.Dequeue();
 
             int dropIndex = System.Math.Min(9, System.Math.Max(1, (int)Mathf.Abs(vtDestination.y)));
-            float duration = m_BlockConfig.dropSpeed[dropIndex - 1];
+            float duration = dropSpeed[dropIndex - 1];
             yield return CoStartDropSmooth(vtDestination, duration * acc);
         }
 

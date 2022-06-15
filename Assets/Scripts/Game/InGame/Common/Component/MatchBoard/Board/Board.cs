@@ -421,7 +421,8 @@ public class Board
 
         while (true)
         {
-            genUnitKey = UnityEngine.Random.Range(1, 5); //TODO 스테이지파일에서 Spawn 정책을 이용해야함
+            int randomNum = UnityEngine.Random.Range(0, 5);
+            genUnitKey = FirebaseManager.Instance.CurrentEquipUnit[randomNum].key; //TODO 스테이지파일에서 Spawn 정책을 이용해야함
 
             if (notAllowedUnitKey == genUnitKey)
                 continue;
