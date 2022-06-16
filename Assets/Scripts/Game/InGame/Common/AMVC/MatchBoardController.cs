@@ -18,11 +18,12 @@ public class MatchBoardController : BaseController
 
     public override void Init()
     {
-        InitStage();
+        //InitStage();
     }
 
     public override void Set()
     {
+        InitStage();
     }
 
     public override void AdvanceTime(float dt_sec)

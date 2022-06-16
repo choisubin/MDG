@@ -182,6 +182,10 @@ public enum ENotiMessage
     //3001~4000
     //Lobby 
     OnClickUnitInfo = 3001,
+
+    //4001~5000
+    //firebase
+    OnFireBaseDataUpdate = 4001,
 }
 
 public enum EDataParamKey

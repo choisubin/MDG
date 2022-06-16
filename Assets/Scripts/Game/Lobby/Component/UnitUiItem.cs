@@ -16,7 +16,7 @@ public class UnitUiItem : MonoBehaviour
         _unitKey = unitkey;
         _unitDef = DefinitionManager.Instance.GetData<UnitWrapperDefinition>(unitkey);
         _userUnitData = FirebaseManager.Instance.userUnitDataDic[unitkey];
-        if(_unitDef!=null)
+        if (_unitDef!=null)
         {
             _unitImg.sprite = Resources.Load<Sprite>("Sprites/Unit/" + _unitDef.UnitImageStr);
             _levelText.text = string.Format("lv. {0}", _userUnitData.level);

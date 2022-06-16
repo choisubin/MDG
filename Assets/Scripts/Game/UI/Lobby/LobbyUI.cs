@@ -31,14 +31,28 @@ public class LobbyUI : MonoBehaviour
         _userNickName.text = FirebaseManager.Instance.dic["username"] as string;
         _userMoney.text = Convert.ToInt32(FirebaseManager.Instance.dic["coin"]).ToString();
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnClickUnitInfo);
+        NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnFireBaseDataUpdate);
     }
 
+    public void AdvaceTime(float dt_sec)
+    {
+        if(_dataBaseUpdate)
+        {
+            _dataBaseUpdate = false;
+            _inventory.Set();
+            _unitPopupController.UpdateUI();
+        }
+    }
+    private bool _dataBaseUpdate = false;
     public void OnNotification(Notification noti)
     {
         switch(noti.msg)
         {
             case ENotiMessage.OnClickUnitInfo:
                 _unitPopupController.Set((int)noti.data[EDataParamKey.Integer]);
+                break;
+            case ENotiMessage.OnFireBaseDataUpdate:
+                _dataBaseUpdate = true;
                 break;
         }
     }
@@ -79,6 +93,7 @@ public class LobbyUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.OnClickUnitInfo);
+        NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.OnFireBaseDataUpdate);
     }
 }
 [SerializeField]

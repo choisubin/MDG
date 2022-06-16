@@ -11,25 +11,38 @@ public class UnitPopupController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _txtEquipBtn;
     [SerializeField] Button _equipBtn;
 
+    [SerializeField] private UnitUiLine _equipSlotLines;
+    [SerializeField] private GameObject _goSlotLines;
 
 
     private UnitWrapperDefinition _unitDef;
     private FirebaseManager.UserUnitData _userUnitData;
-    private bool _isEquip = false;
+    private int _unitKey;
+    bool _isEquip = false;
     public void Set(int unitKey)
     {
+        Debug.LogError("SETSET");
+        this.gameObject.SetActive(true);
         _unit.Set(unitKey);
-
+        _unitKey = unitKey;
         _unitDef = DefinitionManager.Instance.GetData<UnitWrapperDefinition>(unitKey);
-        _userUnitData = FirebaseManager.Instance.userUnitDataDic[unitKey];
 
-        _isEquip = false;
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        _goSlotLines.SetActive(false);
+        _userUnitData = FirebaseManager.Instance.userUnitDataDic[_unitKey];
+
+        bool _isEquip = false;
         foreach (var equip in FirebaseManager.Instance.CurrentEquipUnit)
         {
-            if (unitKey == equip.key) _isEquip = true;
+            if (_unitKey == equip.key)
+            {
+                _isEquip = true;
+            }
         }
-
-        _equipBtn.interactable = !_isEquip;
         if (_unitDef != null)
         {
             _txtUnitInfo.text = string.Format
@@ -40,9 +53,33 @@ public class UnitPopupController : MonoBehaviour
                 GetAttackTypeStr(_unitDef.EUnitAttackType)
                 );
         }
-        this.gameObject.SetActive(true);
+        _txtEquipBtn.text = _isEquip ? "장착중" : "장착하기";
+        _equipBtn.interactable = !_isEquip;
+
     }
 
+    public void OnClickEquip()
+    {
+        int[] equipUnitKeys = new int[5];
+        foreach (var dataDic in FirebaseManager.Instance.userUnitDataDic)
+        {
+            int slot = dataDic.Value.equipSlot;
+            if (slot > 0 && slot < 6)
+            {
+                equipUnitKeys[slot - 1] = dataDic.Key;
+            }
+        }
+        _equipSlotLines.Set(equipUnitKeys);
+        _goSlotLines.SetActive(true);
+    }
+
+    public void OnClickEquipSlot(int slotNum)
+    {
+        FirebaseManager.Instance.ChangeEquipUnit(_unitKey, slotNum, () =>
+        {
+            NotificationCenter.Instance.PostNotification(ENotiMessage.OnFireBaseDataUpdate);
+        });
+    }
 
     private string GetTargetStr(EUnitTargetingType type)
     {

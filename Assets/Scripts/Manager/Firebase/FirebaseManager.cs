@@ -63,7 +63,7 @@ public class FirebaseManager : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
     }
     private Firebase.Auth.FirebaseUser user;
-    public void Login(string email,string password)
+    public void Login(string email,string password,Action callback)
     {
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(
                task => {
@@ -71,7 +71,9 @@ public class FirebaseManager : MonoBehaviour
                    {
                        _isLogin = true;
                        user = task.Result;
-                       LoadDatabase();
+                       LoadData(()=> {
+                           callback();
+                       });
                    }
                    else
                    {
@@ -146,8 +148,18 @@ public class FirebaseManager : MonoBehaviour
         string json = JsonUtility.ToJson(user); // 생성한 사용자에 대한 정보 json 형식으로 저장
         reference.Child(userid).SetRawJsonValueAsync(json); // 데이터베이스에 json 파일 업로드
     }
-
-    public void LoadDatabase()
+    public void LoadData(Action callback)
+    {
+        LoadDatabase(() => {
+            LoadUnitDatabase(()=> {
+                LoadDataToDatabase(()=> {
+                    Debug.LogError("데이터 로딩 완;");
+                    callback();
+                });
+            });
+        });
+    }
+    private void LoadDatabase(Action callback)
     {
         reference.Child(user.UserId).GetValueAsync().ContinueWith(task =>
         {
@@ -163,28 +175,89 @@ public class FirebaseManager : MonoBehaviour
                 {
                     dic = (IDictionary<string, object>)snapshot.Value;
                 }
+                callback();
             }
         });
+    }
 
+    private void LoadUnitDatabase(Action callback)
+    {
         DatabaseReference unitdata = FirebaseDatabase.DefaultInstance.GetReference(user.UserId);
         unitdata.Child("unitData").GetValueAsync().ContinueWith(task =>
         {
             if (task.IsCompleted)
             {
+                _userUnitDataDic.Clear();
                 DataSnapshot snapshot = task.Result;
-                foreach (DataSnapshot data in snapshot.Children)
+                int count = 0;
+                if (snapshot != null)
                 {
-                    IDictionary unitInfo = (IDictionary)data.Value;
-                    _userUnitDataDic.Add(unitInfo["key"], unitInfo);
-                    //Debug.LogErrorFormat("{0} / {1} / {2}", unitInfo["key"], unitInfo["level"], unitInfo["equipSlot"]);
+                    foreach (DataSnapshot data in snapshot.Children)
+                    {
+                        IDictionary unitInfo = (IDictionary)data.Value;
+                        _userUnitDataDic.Add(unitInfo["key"], unitInfo);
+                    }
                 }
+                callback();
             }
         });
+
+        //DatabaseReference unitdata = FirebaseDatabase.DefaultInstance.GetReference(user.UserId);
+        //unitdata.Child("unitData").GetValueAsync().ContinueWith(task =>
+        //{
+        //    Debug.LogError("2");
+        //    if (task.IsCompleted)
+        //    {
+        //        Debug.LogError("3");
+        //        DataSnapshot snapshot = task.Result;
+        //        Debug.LogError(snapshot.Children);
+        //        foreach (DataSnapshot data in snapshot.Children)
+        //        {
+        //            IDictionary unitInfo = (IDictionary)data.Value;
+        //            _userUnitDataDic.Add(unitInfo["key"], unitInfo);
+        //        }
+        //        Debug.LogError("5");
+        //    }
+        //    callback();
+        //});
     }
-    public void LoadDataToDatabase()
+
+    public void ChangeEquipUnit(int key, int slot, Action callback)
+    {
+        PrevSlotUpdate(key,slot,()=>
+        {
+            CurSlotUpdate(key, slot, () =>
+            {
+                LoadData(()=>
+                {
+                    callback();
+                });
+            });
+        });
+    }
+    private void PrevSlotUpdate(int key,int slot, Action callback)
+    {
+        DatabaseReference unitdata = FirebaseDatabase.DefaultInstance.GetReference(user.UserId);
+        int prevKey = CurrentEquipUnit[slot - 1].key;
+        unitdata.Child("unitData").Child((prevKey - 1).ToString()).Child("equipSlot").SetValueAsync(0).ContinueWith(task =>
+        {
+            callback();
+        });
+    }
+    private void CurSlotUpdate(int key, int slot,Action callback)
+    {
+        DatabaseReference unitdata = FirebaseDatabase.DefaultInstance.GetReference(user.UserId);
+        unitdata.Child("unitData").Child((key - 1).ToString()).Child("equipSlot").SetValueAsync(slot).ContinueWith(task =>
+        {
+            callback();
+        });
+    }
+
+    private void LoadDataToDatabase(Action callback)
     {
         UserUnitData[] equipDatas = new UserUnitData[5];
-        foreach(var data in _userUnitDataDic)
+        userUnitDataDic.Clear();
+        foreach (var data in _userUnitDataDic)
         {
             IDictionary d = (IDictionary)data.Value;
             int key = Convert.ToInt32(d["key"]);
@@ -199,5 +272,6 @@ public class FirebaseManager : MonoBehaviour
             }
         }
         CurrentEquipUnit = equipDatas;
+        callback();
     }
 }

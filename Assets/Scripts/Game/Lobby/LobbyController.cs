@@ -13,7 +13,7 @@ public class LobbyController : LobbyElement
     }
     public void AdvanceTime(float dt_sec)
     {
-
+        app.view.LobbyUI.AdvaceTime(dt_sec);
     }
 
     public void Dispose()

@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour, System.IDisposable
     }
     void Start()
     {
-        InitHandlers();
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.ChangeSceneState);
+        InitHandlers();
         ChangeState(EGameState.LOBBY);
 
     }
@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour, System.IDisposable
 
     public void Dispose()
     {
-        NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.ChangeSceneState);
         GetStateHandler(_currentState).Dispose();
+        NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.ChangeSceneState);
     }
 
     public void OnNotification(Notification noti)
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour, System.IDisposable
         {
             case EGameState.INGAME:
                 int[] stageInfo = (int[])noti.data[EDataParamKey.IntegerArr];
+                Debug.LogError(stageInfo[0]);
+                Debug.LogError(stageInfo[1]);
                 inGameApplication.SetStageNum(stageInfo[0], stageInfo[1]);
                 ChangeState(state);
                 break;

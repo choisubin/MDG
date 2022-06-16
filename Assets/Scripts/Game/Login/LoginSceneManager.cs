@@ -18,18 +18,24 @@ public class LoginSceneManager : MonoBehaviour
     public GameObject _loginPopup;
 
     private float _curTime = 0;
+    private bool _isLogin = false;
     void Update()
     {
-        if(FirebaseManager.Instance.IsLogin)
+        if(_isLogin)
         {
-            _curTime += Time.deltaTime;
-            if (_curTime > 2f)
-            {
-                FirebaseManager.Instance.LoadDatabase();
-                FirebaseManager.Instance.LoadDataToDatabase();
-                SceneManager.LoadScene("Game", LoadSceneMode.Single);
-            }
-        }    
+            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        }
+        //{
+        //    _curTime += Time.deltaTime;
+        //    if (_curTime > 2f)
+        //    {
+        //        FirebaseManager.Instance.LoadData(()=>
+        //        {
+        //            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        //        });
+        //    }
+        //}    
     }
 
     public void OnClick_Register()
@@ -40,6 +46,9 @@ public class LoginSceneManager : MonoBehaviour
 
     public void OnClick_Login()
     {
-        FirebaseManager.Instance.Login(_loginEmail.text, _loginPassWord.text);
+        FirebaseManager.Instance.Login(_loginEmail.text, _loginPassWord.text,()=>
+        {
+            _isLogin = true;
+        });
     }
 }
