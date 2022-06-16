@@ -178,6 +178,10 @@ public enum ENotiMessage
     //InGame Notification
     OnMatchBlock = 2001,
     OnKillEnemy,
+
+    //3001~4000
+    //Lobby 
+    OnClickUnitInfo = 3001,
 }
 
 public enum EDataParamKey

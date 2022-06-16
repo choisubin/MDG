@@ -39,5 +39,4 @@ public class Inventory : MonoBehaviour
         }
         _equipUnitLines.Set(equipUnitKeys);
     }
-
 }

@@ -23,7 +23,6 @@ public class LobbyApplication : MonoBehaviour, IGameBasicModule
 
     public void Set()
     {
-        Debug.LogError("LobbyApplicationSet");
         //gameObject.SetActive(true);
         controller.Set();
     }

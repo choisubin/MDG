@@ -10,8 +10,10 @@ public class UnitUiItem : MonoBehaviour
 
     private UnitWrapperDefinition _unitDef;
     private FirebaseManager.UserUnitData _userUnitData;
+    private int _unitKey;
     public void Set(int unitkey)
     {
+        _unitKey = unitkey;
         _unitDef = DefinitionManager.Instance.GetData<UnitWrapperDefinition>(unitkey);
         _userUnitData = FirebaseManager.Instance.userUnitDataDic[unitkey];
         if(_unitDef!=null)
@@ -24,5 +26,12 @@ public class UnitUiItem : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void OnClickBtn()
+    {
+        Hashtable sendData = new Hashtable();
+        sendData.Add(EDataParamKey.Integer, _unitKey);
+        NotificationCenter.Instance.PostNotification(ENotiMessage.OnClickUnitInfo, sendData);
     }
 }

@@ -7,7 +7,7 @@ public class UnitUiLine : MonoBehaviour
     [SerializeField] private UnitUiItem[] _unitItems;
     public void Set(int[] keys)
     {
-        for(int i =0;i< _unitItems.Length;i++)
+        for (int i =0;i< _unitItems.Length;i++)
         {
             if (keys.Length<=i)
             {

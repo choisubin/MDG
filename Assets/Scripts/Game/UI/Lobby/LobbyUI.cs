@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+
 public class LobbyUI : MonoBehaviour
 {
     [SerializeField] private RectTransform _bottomToggleGroup;
@@ -12,8 +14,10 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] private GameObject[] _middleContents;
 
     [SerializeField] private StagePopupController _stagePopupController;
+    [SerializeField] private UnitPopupController _unitPopupController;
 
     [SerializeField] private TextMeshProUGUI _userNickName;
+    [SerializeField] private TextMeshProUGUI _userMoney;
 
     [SerializeField] private Inventory _inventory;
 
@@ -25,6 +29,18 @@ public class LobbyUI : MonoBehaviour
         _stagePopupController.Init();
         SetUiSize();
         _userNickName.text = FirebaseManager.Instance.dic["username"] as string;
+        _userMoney.text = Convert.ToInt32(FirebaseManager.Instance.dic["coin"]).ToString();
+        NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnClickUnitInfo);
+    }
+
+    public void OnNotification(Notification noti)
+    {
+        switch(noti.msg)
+        {
+            case ENotiMessage.OnClickUnitInfo:
+                _unitPopupController.Set((int)noti.data[EDataParamKey.Integer]);
+                break;
+        }
     }
 
     private void SetUiSize()
@@ -62,6 +78,7 @@ public class LobbyUI : MonoBehaviour
     public void Dispose()
     {
         gameObject.SetActive(false);
+        NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.OnClickUnitInfo);
     }
 }
 [SerializeField]
