@@ -178,6 +178,7 @@ public enum ENotiMessage
     //InGame Notification
     OnMatchBlock = 2001,
     OnKillEnemy,
+    OnArriveEnemy,
 
     //3001~4000
     //Lobby 
@@ -197,4 +198,5 @@ public enum EDataParamKey
     IntegerArr,
     //사용자 정의 클래스
     AttackWrapper,
+    StageEnemySpawnKey,
 }

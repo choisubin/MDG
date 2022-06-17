@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour, System.IDisposable
                 int[] stageInfo = (int[])noti.data[EDataParamKey.IntegerArr];
                 Debug.LogError(stageInfo[0]);
                 Debug.LogError(stageInfo[1]);
-                inGameApplication.SetStageNum(stageInfo[0], stageInfo[1]);
+                inGameApplication.SetStageNum(stageInfo[0], stageInfo[1], (int)noti.data[EDataParamKey.StageEnemySpawnKey]);
                 ChangeState(state);
                 break;
             default:

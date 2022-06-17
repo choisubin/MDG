@@ -4,23 +4,86 @@
             "key": 1,
             "StageNum": 1,
             "PartNum": 1,
+            "Time": 1,
+            "SpawnUnitKey": 6,
+            "SpawnUnitNum": 5,
+            "SpawnCycle": 2
+        },
+        {
+            "key": 1,
+            "StageNum": 1,
+            "PartNum": 1,
+            "Time": 2,
+            "SpawnUnitKey": 7,
+            "SpawnUnitNum": 6,
+            "SpawnCycle": 2
+        },
+        {
+            "key": 2,
+            "StageNum": 1,
+            "PartNum": 2,
             "Time": 0.5,
             "SpawnUnitKey": 1,
             "SpawnUnitNum": 4,
             "SpawnCycle": 0.1
         },
         {
-            "key": 1,
+            "key": 2,
             "StageNum": 1,
-            "PartNum": 1,
+            "PartNum": 2,
             "Time": 0.5,
             "SpawnUnitKey": 3,
             "SpawnUnitNum": 2,
             "SpawnCycle": 0.3
         },
         {
-            "key": 1,
+            "key": 2,
             "StageNum": 1,
+            "PartNum": 2,
+            "Time": 1,
+            "SpawnUnitKey": 1,
+            "SpawnUnitNum": 3,
+            "SpawnCycle": 1
+        },
+        {
+            "key": 2,
+            "StageNum": 1,
+            "PartNum": 2,
+            "Time": 3,
+            "SpawnUnitKey": 2,
+            "SpawnUnitNum": 7,
+            "SpawnCycle": 0.4
+        },
+        {
+            "key": 3,
+            "StageNum": 1,
+            "PartNum": 3,
+            "Time": 1,
+            "SpawnUnitKey": 4,
+            "SpawnUnitNum": 20,
+            "SpawnCycle": 1
+        },
+        {
+            "key": 3,
+            "StageNum": 1,
+            "PartNum": 3,
+            "Time": 0.5,
+            "SpawnUnitKey": 2,
+            "SpawnUnitNum": 15,
+            "SpawnCycle": 1.4
+        },
+        {
+            "key": 3,
+            "StageNum": 1,
+            "PartNum": 3,
+            "Time": 3,
+            "SpawnUnitKey": 3,
+            "SpawnUnitNum": 7,
+            "SpawnCycle": 2
+        },
+        {
+            "key": 4,
+            "StageNum": 2,
             "PartNum": 1,
             "Time": 1,
             "SpawnUnitKey": 1,
@@ -28,8 +91,8 @@
             "SpawnCycle": 1
         },
         {
-            "key": 1,
-            "StageNum": 1,
+            "key": 4,
+            "StageNum": 2,
             "PartNum": 1,
             "Time": 3,
             "SpawnUnitKey": 2,
@@ -37,13 +100,112 @@
             "SpawnCycle": 0.4
         },
         {
-            "key": 2,
-            "StageNum": 1,
+            "key": 4,
+            "StageNum": 2,
+            "PartNum": 1,
+            "Time": 1,
+            "SpawnUnitKey": 4,
+            "SpawnUnitNum": 20,
+            "SpawnCycle": 1
+        },
+        {
+            "key": 4,
+            "StageNum": 2,
+            "PartNum": 1,
+            "Time": 0.5,
+            "SpawnUnitKey": 2,
+            "SpawnUnitNum": 15,
+            "SpawnCycle": 1.4
+        },
+        {
+            "key": 4,
+            "StageNum": 2,
+            "PartNum": 1,
+            "Time": 3,
+            "SpawnUnitKey": 3,
+            "SpawnUnitNum": 7,
+            "SpawnCycle": 2
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 1,
+            "SpawnUnitKey": 6,
+            "SpawnUnitNum": 5,
+            "SpawnCycle": 2
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 2,
+            "SpawnUnitKey": 7,
+            "SpawnUnitNum": 6,
+            "SpawnCycle": 2
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 0.5,
+            "SpawnUnitKey": 1,
+            "SpawnUnitNum": 4,
+            "SpawnCycle": 0.1
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 0.5,
+            "SpawnUnitKey": 3,
+            "SpawnUnitNum": 2,
+            "SpawnCycle": 0.3
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 1,
+            "SpawnUnitKey": 1,
+            "SpawnUnitNum": 3,
+            "SpawnCycle": 1
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 3,
+            "SpawnUnitKey": 2,
+            "SpawnUnitNum": 7,
+            "SpawnCycle": 0.4
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
             "PartNum": 2,
             "Time": 1,
             "SpawnUnitKey": 4,
             "SpawnUnitNum": 20,
             "SpawnCycle": 1
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 2,
+            "Time": 0.5,
+            "SpawnUnitKey": 2,
+            "SpawnUnitNum": 15,
+            "SpawnCycle": 1.4
+        },
+        {
+            "key": 5,
+            "StageNum": 2,
+            "PartNum": 3,
+            "Time": 3,
+            "SpawnUnitKey": 3,
+            "SpawnUnitNum": 7,
+            "SpawnCycle": 2
         }
     ]
 }

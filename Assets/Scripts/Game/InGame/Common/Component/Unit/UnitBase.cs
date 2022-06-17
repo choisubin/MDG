@@ -72,6 +72,12 @@ public class UnitBase : MonoBehaviour
         _moveComponent.AdvanceTime(dt_sec);
         if(_moveComponent.IsArrive || CurrentHP == 0)
         {
+            if(_moveComponent.IsArrive)
+            {
+                Hashtable sendData = new Hashtable();
+                sendData.Add(EDataParamKey.Integer, (int)_unitDef.BaseAtk);
+                NotificationCenter.Instance.PostNotification(ENotiMessage.OnArriveEnemy,sendData);
+            }
             DespawnUnit();
         }
     }

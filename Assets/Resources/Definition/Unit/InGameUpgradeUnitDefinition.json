@@ -1,0 +1,196 @@
+{
+    "definitions": [
+        {
+            "key": 1,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 1,
+            "Level": 1,
+            "AddAttackNum": 0,
+            "AddAtk": 10,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 1,
+            "Level": 2,
+            "AddAttackNum": 0,
+            "AddAtk": 20,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 2,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 2,
+            "Level": 1,
+            "AddAttackNum": 2,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0.2,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 2,
+            "Level": 2,
+            "AddAttackNum": 3,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0.3,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 3,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 3,
+            "Level": 1,
+            "AddAttackNum": 1,
+            "AddAtk": 10,
+            "AddAttackSpeed": 0.2,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 3,
+            "Level": 2,
+            "AddAttackNum": 4,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0.3,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 4,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 4,
+            "Level": 1,
+            "AddAttackNum": 0,
+            "AddAtk": 10,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 4,
+            "Level": 2,
+            "AddAttackNum": 0,
+            "AddAtk": 20,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 5,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 5,
+            "Level": 1,
+            "AddAttackNum": 3,
+            "AddAtk": 2,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 5,
+            "Level": 2,
+            "AddAttackNum": 4,
+            "AddAtk": 4,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 6,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 6,
+            "Level": 1,
+            "AddAttackNum": 0,
+            "AddAtk": 10,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 6,
+            "Level": 2,
+            "AddAttackNum": 0,
+            "AddAtk": 20,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 7,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 7,
+            "Level": 1,
+            "AddAttackNum": 3,
+            "AddAtk": 2,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 7,
+            "Level": 2,
+            "AddAttackNum": 4,
+            "AddAtk": 4,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 0
+        },
+        {
+            "key": 8,
+            "Level": 0,
+            "AddAttackNum": 0,
+            "AddAtk": 0,
+            "AddAttackSpeed": 0,
+            "nextUpgradeCoin": 300
+        },
+        {
+            "key": 8,
+            "Level": 1,
+            "AddAttackNum": 0,
+            "AddAtk": 10,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 700
+        },
+        {
+            "key": 8,
+            "Level": 2,
+            "AddAttackNum": 0,
+            "AddAtk": 20,
+            "AddAttackSpeed": 0.5,
+            "nextUpgradeCoin": 0
+        }
+    ]
+} 

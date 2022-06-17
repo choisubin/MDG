@@ -21,7 +21,6 @@ public class UnitPopupController : MonoBehaviour
     bool _isEquip = false;
     public void Set(int unitKey)
     {
-        Debug.LogError("SETSET");
         this.gameObject.SetActive(true);
         _unit.Set(unitKey);
         _unitKey = unitKey;
@@ -46,11 +45,12 @@ public class UnitPopupController : MonoBehaviour
         if (_unitDef != null)
         {
             _txtUnitInfo.text = string.Format
-                ("공격력 : {0}\n공격속도 : {1}\n타겟팅 : <color=red>{2}</color>\n공격타입 : <color=red>{3}</color>\n",
+                ("공격력 : {0}\n공격속도 : {1}\n타겟팅 : <color=black>{2}</color>\n공격타입 : <color=black>{3}</color>\n공격횟수 : {4}",
                 _unitDef.BaseAtk,
                 _unitDef.BaseAttackSpeed,
                 GetTargetStr(_unitDef.EUnitTargetingType),
-                GetAttackTypeStr(_unitDef.EUnitAttackType)
+                GetAttackTypeStr(_unitDef.EUnitAttackType),
+                _unitDef.UnitAttackNum
                 );
         }
         _txtEquipBtn.text = _isEquip ? "장착중" : "장착하기";
@@ -88,9 +88,9 @@ public class UnitPopupController : MonoBehaviour
             case EUnitTargetingType.Front:
                 return "가장 가까운 적";
             case EUnitTargetingType.HighHP:
-                return "가장 체력이 높은 적";
+                return "HighHP";
             case EUnitTargetingType.LowHp:
-                return "가장 체력이 낮은 적";
+                return "LowHp";
             case EUnitTargetingType.Random:
                 return "랜덤";
             default:

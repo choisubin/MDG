@@ -46,10 +46,16 @@ public class InGameApplication : MonoBehaviour, IGameBasicModule
     public void AdvanceTime(float dt_sec)
     {
         //controller.AdvanceTime(dt_sec);
-
-        inGameController.AdvanceTime(dt_sec);
-        defenseMapController.AdvanceTime(dt_sec);
-        matchBoardController.AdvanceTime(dt_sec);
+        if(!model.IsAlive)
+        {
+            view.InGameUI.EnableStageResultPopup(false);
+        }
+        else if (model.IsAlive||!model.IsClear)
+        {
+            inGameController.AdvanceTime(dt_sec);
+            defenseMapController.AdvanceTime(dt_sec);
+            matchBoardController.AdvanceTime(dt_sec);
+        }
     }
 
     public void Dispose()
@@ -57,6 +63,7 @@ public class InGameApplication : MonoBehaviour, IGameBasicModule
         //gameObject.SetActive(false);
         //controller.Dispose();
 
+        StopAllCoroutines();
         inGameController.Dispose();
         defenseMapController.Dispose();
         matchBoardController.Dispose();
@@ -67,8 +74,8 @@ public class InGameApplication : MonoBehaviour, IGameBasicModule
         gameObject.SetActive(flag);
     }
 
-    public void SetStageNum(int stage,int part)
+    public void SetStageNum(int stage,int part,int spawnKey)
     {
-        model.SetStageInfo(stage, part);
+        model.SetStageInfo(stage, part, spawnKey);
     }
 }

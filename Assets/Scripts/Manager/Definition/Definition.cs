@@ -199,3 +199,37 @@ public class StageWrapperDefinition
         boardDef = DefinitionManager.Instance.GetData<StageDetailBoardDefinition>(boardKey);
     }
 }
+
+[Serializable]
+public class InGameUpgradeUnitDefinition
+{
+    public int key;
+    public int Level;
+    public int AddAttackNum;
+    public float AddAtk;
+    public float AddAttackSpeed;
+    public int nextUpgradeCoin;
+}
+
+[Serializable]
+public class InGameUpgradeUnitDefinitionContainer : ILoader<int, List<InGameUpgradeUnitDefinition>>
+{
+    public List<InGameUpgradeUnitDefinition> definitions = new List<InGameUpgradeUnitDefinition>();
+    public Dictionary<int, List<InGameUpgradeUnitDefinition>> MakeDict()
+    {
+        Dictionary<int, List<InGameUpgradeUnitDefinition>> dict = new Dictionary<int, List<InGameUpgradeUnitDefinition>>();
+        foreach (InGameUpgradeUnitDefinition definition in definitions)
+        {
+            if (dict.ContainsKey(definition.key))
+            {
+                dict[definition.key].Add(definition);
+            }
+            else
+            {
+                dict.Add(definition.key, new List<InGameUpgradeUnitDefinition>());
+                dict[definition.key].Add(definition);
+            }
+        }
+        return dict;
+    }
+}

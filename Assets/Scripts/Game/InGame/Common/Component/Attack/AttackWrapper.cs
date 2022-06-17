@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackWrapper
+public class AttackWrapper:IngameElement
 {
     public UnitWrapperDefinition unitDefinition;
+    public List<InGameUpgradeUnitDefinition> inGameUpgradeUnitDefinitions = new List<InGameUpgradeUnitDefinition>();
     public Transform startUnitTr;
 
     private Transform _targetEnemyTr;
@@ -24,12 +25,20 @@ public class AttackWrapper
         }
     }
     public UnitBase targetUnit;
+    public int curEquipSlot;
 
     public float atkSpeed
     {
         get
         {
-            return unitDefinition.BaseAttackSpeed;
+            float upgrade = 0;
+            if(curEquipSlot!=-1)
+            {
+                int curLevel = app.model.SlotLevel[curEquipSlot];
+                upgrade = inGameUpgradeUnitDefinitions[curLevel].AddAttackSpeed;
+            }
+
+            return unitDefinition.BaseAttackSpeed + upgrade;
         }
     }
     public string prefabsName
@@ -44,7 +53,14 @@ public class AttackWrapper
     {
         get
         {
-            return unitDefinition.UnitAttackNum;
+            int upgrade = 0;
+            if (curEquipSlot != -1)
+            {
+                int curLevel = app.model.SlotLevel[curEquipSlot];
+                upgrade = inGameUpgradeUnitDefinitions[curLevel].AddAttackNum;
+            }
+
+            return unitDefinition.UnitAttackNum+ upgrade;
         }
     }
 
@@ -52,7 +68,13 @@ public class AttackWrapper
     {
         get
         {
-            return unitDefinition.BaseAtk;
+            float upgrade = 0;
+            if (curEquipSlot != -1)
+            {
+                int curLevel = app.model.SlotLevel[curEquipSlot];
+                upgrade = inGameUpgradeUnitDefinitions[curLevel].AddAtk;
+            }
+            return unitDefinition.BaseAtk+ upgrade;
         }
     }
 
@@ -76,10 +98,25 @@ public class AttackWrapper
         }
     }
 
+    private int GetEquipSlot()
+    {
+        FirebaseManager.UserUnitData[] u = FirebaseManager.Instance.CurrentEquipUnit;
+        for (int i = 0;i< u.Length;i++)
+        {
+            if (u[i].key == unitDefinition.key)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public AttackWrapper(UnitWrapperDefinition unitDefinition, Transform startUnitTr)
     {
         this.unitDefinition = unitDefinition;
         this.startUnitTr = startUnitTr;
+        curEquipSlot = GetEquipSlot();
+        this.inGameUpgradeUnitDefinitions = DefinitionManager.Instance.GetData<List<InGameUpgradeUnitDefinition>>(unitDefinition.key);
     }
     
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DefenseMapController : BaseController
+public class DefenseMapController : IngameElement
 {
     [SerializeField]private DefenseMapBase _defenseMap;
 
@@ -45,21 +45,21 @@ public class DefenseMapController : BaseController
 
     private Dictionary<int, UnitWrapperDefinition> _unitDefDic = new Dictionary<int, UnitWrapperDefinition>();
 
-    public override void Init()
+    public void Init()
+    {
+        //NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnMatchBlock);
+        //_unitDefDic = DefinitionManager.Instance.GetDatas<UnitWrapperDefinition>();
+    }
+
+    public void Set()
     {
         NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.OnMatchBlock);
         _unitDefDic = DefinitionManager.Instance.GetDatas<UnitWrapperDefinition>();
+        SetSpawnSchedule(app.model.StageSpawnKey);
     }
 
-    public override void Set()
+    public void AdvanceTime(float dt_sec)
     {
-        SetSpawnSchedule(2);
-    }
-
-    float _currentTime = 0;
-    public override void AdvanceTime(float dt_sec)
-    {
-        _currentTime += dt_sec;
 
         ////Unit관련
         //RemoveEnemyToMap();
@@ -71,7 +71,7 @@ public class DefenseMapController : BaseController
         //AdvanceAttack(dt_sec);
 
         //Attack관련
-        SpawnScheduling(_currentTime);
+        SpawnScheduling(app.model.GameTime);
 
         AdvanceAttack(dt_sec);
         AdvanceUnits(dt_sec);
@@ -79,6 +79,16 @@ public class DefenseMapController : BaseController
         RemoveAttackToMap();
         RemoveEnemyToMap();
 
+        if(_defenseMap!=null)
+        {
+            _defenseMap.HpTxt.text = app.model.PlayerHP.ToString();
+        }
+
+        if(_currentScheduleDic.Count<=0 && _unitList.Count<=0)
+        {
+            app.model.IsClear = true;
+            app.view.InGameUI.EnableStageResultPopup(true);
+        }
 
         //Unit관련
 
@@ -96,8 +106,21 @@ public class DefenseMapController : BaseController
         }
     }
 
-    public override void Dispose()
+    public void Dispose()
     {
+        foreach (var unit in _unitList)
+        {
+            PoolManager.Instance.DespawnObject(EPrefabsType.Unit,unit.gameObject);
+        }
+
+        foreach (var attack in _attackList)
+        {
+            PoolManager.Instance.DespawnObject(EPrefabsType.InGameAttack, attack.gameObject);
+        }
+        _unitList.Clear();
+        _attackList.Clear();
+        _targetTrList.Clear();
+        _currentScheduleDic.Clear();
         NotificationCenter.Instance.RemoveObserver(OnNotification, ENotiMessage.OnMatchBlock);
     }
 

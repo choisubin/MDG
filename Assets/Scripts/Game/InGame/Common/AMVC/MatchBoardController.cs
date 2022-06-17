@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MatchBoardController : BaseController
+public class MatchBoardController : IngameElement
 {
     bool m_bInit;
     Stage m_Stage;
@@ -16,17 +16,19 @@ public class MatchBoardController : BaseController
     [SerializeField] Transform m_Container;
     [SerializeField] Camera m_BoardCamera;
 
-    public override void Init()
+    public void Init()
     {
         //InitStage();
     }
 
-    public override void Set()
+    public void Set()
     {
+        int[] level = { 0, 0, 0, 0, 0 };
+        app.model.SlotLevel = level;
         InitStage();
     }
 
-    public override void AdvanceTime(float dt_sec)
+    public void AdvanceTime(float dt_sec)
     {
         if (!m_bInit)
             return;
@@ -34,7 +36,7 @@ public class MatchBoardController : BaseController
         OnInputHandler();
     }
 
-    public override void Dispose()
+    public void Dispose()
     {
     }
 

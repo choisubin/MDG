@@ -98,6 +98,7 @@ public class StagePopupController : BaseController
         sendData.Add(EDataParamKey.Integer, EGameState.INGAME);
         int[] arr = { _curStageNum, _curPartNum };
         sendData.Add(EDataParamKey.IntegerArr, arr);
+        sendData.Add(EDataParamKey.StageEnemySpawnKey, _curStageDef.monsterSpawnKey);
         NotificationCenter.Instance.PostNotification(ENotiMessage.ChangeSceneState, sendData);
     }
 }
